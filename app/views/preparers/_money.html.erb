@@ -1,0 +1,43 @@
+
+<h5>Stats</h5>
+<table>
+	<thead>
+		<tr>
+			<th>Total Payments YTD</th>
+			<th>Preparer Percentage</th>
+			<th>Wages YTD</th>
+			<th>Balance</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><%= number_to_currency(@total_payments) %></th>
+			<th><%= number_to_currency(@total_payments/2) %></th>
+			<th><%=  %></th>
+		</tr>
+
+	</tbody>
+</table>
+<h5>Recent Payments</h5>
+<table>
+	<thead>
+		<tr>
+			<th>Client</th>
+			<th>Job</th>
+			<th>Amount</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @preparer.jobs.each do |job| %>
+			<% if job.payment %>
+		<tr>
+			<th><%= job.client.last_name %></th>
+			<th><%= job.id %></th>
+			<th><%= number_to_currency(job.payment.amount) %></th>
+			<th><%= job.payment.created_at.strftime('%v') %></th>
+		</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

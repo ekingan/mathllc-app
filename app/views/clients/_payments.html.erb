@@ -1,0 +1,23 @@
+<h5>Recent Payments</h5>
+<table>
+	<thead>
+		<tr>
+			<th>Preparer</th>
+			<th>Job</th>
+			<th>Amount</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @client.jobs.each do |job| %>
+			<% if job.payment %>
+		<tr>
+			<th><%= job.preparer.first_name %></th>
+			<th><%= job.id %></th>
+			<th><%= number_to_currency(job.payment.amount) %></th>
+			<th><%= job.payment.created_at.strftime('%v') %></th>
+		</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>

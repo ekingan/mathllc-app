@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fed_form: 1
+  primary_state: MyString
+  second_state: MyString
+  third_state: MyString
+  tmse: false
+  portland: false
+  status: 1
+  printed: false
+  scanned: false
+  uploaded: false
+  filed: 2017-06-16
+  ack_fed: 2017-06-16
+  ack_primary_state: 2017-06-16
+  ack_second_state: 2017-06-16
+  ack_third_state: 2017-06-16
+  due_date: 2017-06-16
+  rejected: MyString
+  notes: MyText
+  client: one
+  preparer: one
+
+two:
+  fed_form: 1
+  primary_state: MyString
+  second_state: MyString
+  third_state: MyString
+  tmse: false
+  portland: false
+  status: 1
+  printed: false
+  scanned: false
+  uploaded: false
+  filed: 2017-06-16
+  ack_fed: 2017-06-16
+  ack_primary_state: 2017-06-16
+  ack_second_state: 2017-06-16
+  ack_third_state: 2017-06-16
+  due_date: 2017-06-16
+  rejected: MyString
+  notes: MyText
+  client: two
+  preparer: two
