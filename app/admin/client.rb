@@ -6,6 +6,7 @@ ActiveAdmin.register Client do
   menu priority: 2
 
   filter :entity_type, as: :select
+  filter :company
   filter :first_name
   filter :last_name
   filter :spouse_first_name
@@ -26,6 +27,7 @@ index do
   column :id
   column :last_name
   column :first_name
+  column :company
   column :email
   column :phone
   column :entity_type
