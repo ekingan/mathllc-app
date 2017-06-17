@@ -28,10 +28,11 @@ index do
   column :last_name
   column :first_name
   column :company
-  column :email
-  column :phone
   column :entity_type
-  column :spouse_first_name
+  column :due_date
+  column :preparer, sortable: :preparer do |client|
+    client.jobs.map(&:preparer).map(&:first_name).first
+  end
   actions
 end
 

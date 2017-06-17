@@ -18,11 +18,11 @@ ActiveAdmin.register Job do
 
   index do
     column :id
-    column "Client" do |job|
+    column "Client", sortable: :client do |job|
       c = Client.find(job.client_id)
       link_to [c.last_name, c.first_name].join(', '), admin_client_path(job.client_id)
     end
-    column "Preparer" do |job|
+    column "Preparer", sortable: :preparer do |job|
       link_to Preparer.find(job.preparer_id).first_name, admin_preparer_path(job.preparer_id)
     end
     column :fed_form
@@ -36,6 +36,9 @@ ActiveAdmin.register Job do
     column "Fed Accepted", :ack_fed
     column "State Accepted", :ack_primary_state
     column :rejected
+		column "Paid", sortable: :paid do |job|
+			status_tag job.payment ? "yes" : 'no'
+		end
     actions
   end
 
