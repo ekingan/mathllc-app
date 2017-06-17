@@ -7,7 +7,6 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
-  filter :preparer_first_name, as: :select, collection: Preparer.all.map{|prep| prep.first_name}
   filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}
   filter :client_id, as: :select, label: "Client ID"
   filter :status, as: :select
