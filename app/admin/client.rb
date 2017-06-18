@@ -71,6 +71,7 @@ end
       f.input :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
       f.input :email
       f.input :phone
+      f.input :street
       f.input :city
       f.input :state
       f.input :zip_code
