@@ -3,7 +3,6 @@ ActiveAdmin.register Preparer do
                 :state, :zip_code, :date_of_birth, :role, :license_number, :job_title
   menu priority: 1
 
-  filter :first_name
   filter :last_name
 
   index do
@@ -49,6 +48,8 @@ ActiveAdmin.register Preparer do
     def show
       @preparer = Preparer.find(params[:id])
       @total_payments = @preparer.jobs.map(&:payment).compact.map{|pay| pay.amount.to_i}.sum
+      @total_wages = Wage.where(preparer_id: @preparer.id).map(&:amount).sum
+      @balance = @total_payments/2 - @total_wages
     end
 
   end

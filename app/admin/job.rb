@@ -7,8 +7,8 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
-  # filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}
-  # filter :client_id, as: :select, label: "Client ID"
+  filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}
+  filter :client_id, as: :select, label: "Client ID"
   filter :status, as: :select
   filter :fed_form
   filter :ack_fed
@@ -18,13 +18,13 @@ ActiveAdmin.register Job do
 
   index do
     column :id
-    # column "Client", sortable: :client do |job|
-    #   c = Client.find(job.client_id)
-    #   link_to [c.last_name, c.first_name].join(', '), admin_client_path(job.client_id)
-    # end
-    # column "Preparer", sortable: :preparer do |job|
-    #   link_to Preparer.find(job.preparer_id).first_name, admin_preparer_path(job.preparer_id)
-    # end
+    column "Client", sortable: :client do |job|
+      c = Client.find(job.client_id)
+      link_to [c.last_name, c.first_name].join(', '), admin_client_path(job.client_id)
+    end
+    column "Preparer", sortable: :preparer do |job|
+      link_to Preparer.find(job.preparer_id).first_name, admin_preparer_path(job.preparer_id)
+    end
     column :fed_form
     column :status, sortable: :status do |job|
       status_tag job.status
@@ -48,12 +48,12 @@ ActiveAdmin.register Job do
 
   show do
     attributes_table do
-      # row "Preparer" do
-      #   "#{job.preparer.first_name}  #{job.preparer.last_name}"
-      # end
-      # row "Client" do
-      #   "#{job.client.first_name}  #{job.client.last_name}"
-      # end
+      row "Preparer" do
+        "#{job.preparer.first_name}  #{job.preparer.last_name}"
+      end
+      row "Client" do
+        "#{job.client.first_name}  #{job.client.last_name}"
+      end
       row :status do |job|
         status_tag job.status
       end
@@ -81,12 +81,12 @@ ActiveAdmin.register Job do
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
-    # f.inputs "Preparer" do
-    #   f.input :preparer, as: :select, collection: Preparer.all.map {|prep| [prep.first_name, prep.id]}
-    # end
-    # f.inputs "Client" do
-    #   f.input :client, as: :select, collection: Client.all.map {|c| [ "#{c.last_name}, #{c.first_name}", c.id]}
-    # end
+    f.inputs "Preparer" do
+      f.input :preparer, as: :select, collection: Preparer.all.map {|prep| [prep.first_name, prep.id]}
+    end
+    f.inputs "Client" do
+      f.input :client, as: :select, collection: Client.all.map {|c| [ "#{c.last_name}, #{c.first_name}", c.id]}
+    end
     f.inputs "Job Info" do
       f.input :fed_form
       f.input :primary_state
