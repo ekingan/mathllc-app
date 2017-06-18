@@ -16,7 +16,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  config.site_title_image = "MATHLOGO.LONG.png"
+  #config.site_title_image = "MATHLOGO.LONG.png"
 
   # == Default Namespace
   #
@@ -157,7 +157,7 @@ ActiveAdmin.setup do |config|
 
   # == Setting a Favicon
   #
-  #config.favicon = 'MATHLOGO.PNG'
+  #config.favicon = 'favicon.ico'
 
   # == Meta Tags
   #
