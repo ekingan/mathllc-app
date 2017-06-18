@@ -4,7 +4,7 @@
 // `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
 // Active Admin source.
 //$panelBorder: #babdc5;
-$skinLogo: url("MATH.LOGO.png") no-repeat 0 0;
+$skinLogo: url("MATHLOGO.LONG.png") no-repeat 0 0;
 $skinActiveColor: #3399ff;
 $bodyColor: rgba(236, 240, 241, 0.48);
 $skinBlack: rgb(55, 71, 79);
@@ -28,4 +28,4 @@ $panelHeaderBck: #002744;
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
-//   .status_tag { background: #6090DB; }
+.status_tag { background: #6090DB; }
