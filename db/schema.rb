@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20170617042309) do
   end
 
   create_table "wages", force: :cascade do |t|
-    t.decimal "Amount"
+    t.decimal "amount"
     t.bigint "preparer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

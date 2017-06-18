@@ -11,13 +11,13 @@ ActiveAdmin.register Payment do
 
 	index do
     column :id
-    column "Client" do |payment|
-      c = Client.find(payment.job.client_id)
-      link_to [c.last_name, c.first_name].join(', '), admin_client_path(payment.job.client_id)
-    end
-    column "Preparer" do |payment|
-      link_to Preparer.find(payment.job.preparer_id).first_name, admin_preparer_path(payment.job.preparer_id)
-    end
+    # column "Client" do |payment|
+    #   c = Client.find(payment.job.client_id)
+    #   link_to [c.last_name, c.first_name].join(', '), admin_client_path(payment.job.client_id)
+    # end
+    # column "Preparer" do |payment|
+    #   link_to Preparer.find(payment.job.preparer_id).first_name, admin_preparer_path(payment.job.preparer_id)
+    # end
     column :job_id
     column "Amount" do |payment|
     	number_to_currency(payment.amount)
@@ -31,15 +31,15 @@ ActiveAdmin.register Payment do
 	show do
 		attributes_table do
 			row :job_id
-			row "Preparer" do
-				link_to "#{payment.job.preparer.first_name}  #{payment.job.preparer.last_name}", admin_preparer_path(payment.job.preparer)
-			end
-			row "Client" do
-				link_to "#{payment.job.client.first_name}  #{payment.job.client.last_name}", admin_client_path(payment.job.client)
-			end
-			row "Amount" do
-				number_to_currency(payment.amount)
-			end
+			# row "Preparer" do
+			# 	link_to "#{payment.job.preparer.first_name}  #{payment.job.preparer.last_name}", admin_preparer_path(payment.job.preparer)
+			# end
+			# row "Client" do
+			# 	link_to "#{payment.job.client.first_name}  #{payment.job.client.last_name}", admin_client_path(payment.job.client)
+			# end
+			# row "Amount" do
+			# 	number_to_currency(payment.amount)
+			# end
 			row "Received On" do
 				payment.created_at
 			end
