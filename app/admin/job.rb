@@ -85,7 +85,7 @@ ActiveAdmin.register Job do
       f.input :preparer, as: :select, collection: Preparer.all.map {|prep| [prep.first_name, prep.id]}
     end
     f.inputs "Client" do
-      f.input :client, as: :select, collection: Client.all.map {|c| [ "#{c.last_name}, #{c.first_name}", c.id]}
+      f.input :client, as: :select, collection: Client.all.map {|c| [ "#{c.last_name}, #{c.first_name}", c.id]}.sort
     end
     f.inputs "Job Info" do
       f.input :fed_form

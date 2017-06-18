@@ -16,6 +16,13 @@ ActiveAdmin.register User do
   filter :sign_in_count
   filter :created_at
 
+  show do
+    row :email
+    row :created_at
+    row :updated_at
+    actions
+  end
+
   form do |f|
     f.inputs "Admin Details" do
       f.input :email
