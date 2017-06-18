@@ -12,10 +12,22 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel "Recent Jobs" do
+        panel "Recent Jobs Added" do
           ul do
-            Job.last(5).map do |job|
-              li link_to(job.id, admin_job_path(job))
+            Job.last(10).map do |job|
+              li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status}", admin_job_path(job))
+            end
+          end
+        end
+      end
+    end
+
+    columns do
+      column do
+        panel "Recent Payments" do
+          ul do
+            Payment.last(10).map do |pay|
+              li link_to("#{pay.job.preparer.name} - #{number_to_currency(pay.amount)}", admin_preparer_path(pay.job.preparer_id))
             end
           end
         end
