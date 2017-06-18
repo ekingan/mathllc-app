@@ -6,7 +6,7 @@ class Client < ApplicationRecord
   validates_presence_of :last_name, :email
 
 	def name
-		"#{last_name}, #{first_name} // #{company}"
+		"#{last_name} #{first_name} // #{company}"
 	end
 
 end
