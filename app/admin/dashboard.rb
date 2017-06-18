@@ -15,7 +15,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Jobs Added" do
           ul do
             Job.last(10).map do |job|
-              li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status}", admin_job_path(job))
+              li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status} - #{job.preparer.name}", admin_job_path(job))
             end
           end
         end
