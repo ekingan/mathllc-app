@@ -23,7 +23,7 @@ ActiveAdmin.register Job do
       link_to [c.last_name, c.first_name].join(', '), admin_client_path(job.client_id)
     end
     column "Preparer", sortable: :preparer do |job|
-      link_to Preparer.find(job.preparer_id).first_name, admin_preparer_path(job.preparer_id)
+      link_to Preparer.find(job.preparer_id).name, admin_preparer_path(job.preparer_id)
     end
     column :fed_form
     column :status, sortable: :status do |job|
