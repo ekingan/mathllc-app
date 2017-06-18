@@ -47,7 +47,7 @@ ActiveAdmin.register Preparer do
   controller do
     def show
       @preparer = Preparer.find(params[:id])
-      @total_payments = @preparer.jobs.map(&:payment).compact.map{|pay| pay.amount.to_i}.sum
+      @total_payments = @preparer.jobs.map(&:payment).compact.map{|pay| pay.amount.to_f}.sum
       @total_wages = Wage.where(preparer_id: @preparer.id).map(&:amount).sum
       @balance = @total_payments/2 - @total_wages
     end
