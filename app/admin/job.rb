@@ -41,10 +41,10 @@ ActiveAdmin.register Job do
 		end
     actions
   end
-
-  action_item only: [:show] do |job|
-    link_to "Receive Payment", new_admin_payment_path(job)
-  end
+  # overrides create of new client
+  # action_item only: [:show] do |job|
+  #   link_to "Receive Payment", new_admin_payment_path(job)
+  # end
 
   show do
     attributes_table do
@@ -87,6 +87,13 @@ ActiveAdmin.register Job do
     f.inputs "Client" do
       f.input :client, as: :select, collection: Client.all.map {|c| [ "#{c.name}", c.id]}.sort
     end
+    f.inputs "Status" do
+      f.input :status
+      f.input :printed
+      f.input :scanned
+      f.input :uploaded
+      f.input :due_date, as: :datepicker
+    end
     tabs do
       tab "Tax Return Info" do
         f.inputs "Job Info" do
@@ -94,28 +101,19 @@ ActiveAdmin.register Job do
           f.input :primary_state
           f.input :tmse
           f.input :portland
-          f.input :due_date, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-        end
-        f.inputs "Status" do
-          f.input :status
-          f.input :printed
-          f.input :scanned
-          f.input :uploaded
-          f.input :filed, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
         end
         f.inputs "Acceptances" do
-          f.input :ack_fed, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-          f.input :ack_primary_state, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-          f.input :ack_second_state, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-          f.input :ack_third_state, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
+          f.input :filed, as: :datepicker
+          f.input :ack_fed, as: :datepicker
+          f.input :ack_primary_state, as: :datepicker
+          f.input :ack_second_state, as: :datepicker
+          f.input :ack_third_state, as: :datepicker
           f.input :rejected
         end
       end
       tab "Other Job Type" do
         f.inputs "Job Info" do
           f.input :type
-          f.input :due_date, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-          f.input :status
         end
       end
     end
@@ -124,6 +122,12 @@ ActiveAdmin.register Job do
       f.input :notes
     end
       f.actions
+  end
+
+  controller do
+    def update
+      super
+    end
   end
 
 end
