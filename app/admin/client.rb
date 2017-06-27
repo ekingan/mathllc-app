@@ -4,6 +4,7 @@ ActiveAdmin.register Client do
                 :number_of_dependents, :spouse_first_name, :spouse_last_name, :spouse_date_of_birth,
                 :spouse_phone, :spouse_email, :spouse_occupation, :notes, :preparer_attributes
   menu priority: 2
+  config.sort_order = :last_name_asc
 
   filter :entity_type, as: :select
   filter :company
