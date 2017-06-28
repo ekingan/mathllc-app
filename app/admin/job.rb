@@ -47,33 +47,58 @@ ActiveAdmin.register Job do
   # end
 
   show do
+    columns do
+      column do
+        panel "Client and Preparer" do
+          attributes_table_for job do
+            row "Preparer" do
+              "#{job.preparer.first_name}  #{job.preparer.last_name}"
+            end
+            row "Client" do
+              "#{job.client.first_name}  #{job.client.last_name}"
+            end
+            row "Payment" do
+              number_to_currency(job.payment.amount) if job.payment
+            end
+            row :due_date
+          end
+        end
+        panel "Filing Details" do
+          attributes_table_for job do
+            row :filed
+            row :ack_fed
+            row :ack_primary_state
+            row :ack_second_state
+            row :ack_third_state
+            row :rejected
+          end
+        end
+      end
+      column do
+        panel "Status" do
+          attributes_table_for job do
+            row :status do |job|
+              status_tag job.status
+            end
+            row :printed
+            row :scanned
+            row :uploaded
+          end
+        end
+        panel "Forms" do
+          attributes_table_for job do
+            row :fed_form
+            row :primary_state
+            row :tmse
+            row :portland
+            row :second_state
+            row :third_state
+          end
+        end
+      end
+    end
+
     attributes_table do
-      row "Preparer" do
-        "#{job.preparer.first_name}  #{job.preparer.last_name}"
-      end
-      row "Client" do
-        "#{job.client.first_name}  #{job.client.last_name}"
-      end
-      row :status do |job|
-        status_tag job.status
-      end
-      row :fed_form
-      row :primary_state
-      row :tmse
-      row :portland
-      row :due_date
-      row :printed
-      row :scanned
-      row :uploaded
-      row :filed
-      row :ack_fed
-      row :ack_primary_state
-      row :ack_second_state
-      row :ack_third_state
-      row :rejected
-      row "Payment" do
-        number_to_currency(job.payment.amount) if job.payment
-      end
       row :notes
     end
   end

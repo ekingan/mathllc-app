@@ -19,7 +19,9 @@ ActiveAdmin.register Payment do
     column "Preparer" do |payment|
       link_to Preparer.find(payment.job.preparer_id).first_name, admin_preparer_path(payment.job.preparer_id)
     end
-    column :job_id
+		column "Job" do |payment|
+			link_to Job.find(payment.job_id).id, admin_job_path(payment.job_id)
+		end
     column "Amount" do |payment|
     	number_to_currency(payment.amount)
     end
