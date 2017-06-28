@@ -38,30 +38,55 @@ index do
 end
 
 show do
-  attributes_table do
-    row :entity_type
-    row :first_name
-    row :last_name
-    row :company
-    row :filing_status
-    row :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-    row :email
-    row :phone
-    row :city
-    row :state
-    row :zip_code
-    row :occupation
-    row :number_of_dependents
-    row :tax_year_ends, as: :datepicker, datepicker_options: { dateFormat: "mm/dd" }
-    row :spouse_first_name
-    row :spouse_last_name
-    row :spouse_date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-    row :spouse_phone
-    row :spouse_email
-    row :spouse_occupation
-    render 'clients/payments', { client: client }
-    row :notes
+  columns do
+    column do
+      panel "Taxpayer Info" do
+        attributes_table_for client do
+          row :first_name
+          row :last_name
+          row :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
+          row :email
+          row :phone
+          row :occupation
+        end
+      end
+      panel "Filing Info" do
+        attributes_table_for client do
+          row :entity_type
+          row :company
+          row :filing_status
+          row :number_of_dependents
+          row :tax_year_ends, as: :datepicker, datepicker_options: { dateFormat: "mm/dd" }
+        end
+      end
+    end
+    column do
+      panel 'Spouse Info' do
+        attributes_table_for client do
+          row :spouse_first_name
+          row :spouse_last_name
+          row :spouse_date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
+          row :spouse_phone
+          row :spouse_email
+          row :spouse_occupation
+        end
+      end
+      panel 'Address' do
+        attributes_table_for client do
+          row :street
+          row :city
+          row :state
+          row :zip_code
+        end
+      end
+    end
   end
+  panel 'Notes' do
+    attributes_table_for client do
+      row :notes
+    end
+  end
+  render 'clients/payments', { client: client }
 end
 
   form do |f|
