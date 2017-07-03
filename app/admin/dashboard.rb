@@ -14,7 +14,16 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Jobs Added" do
           ul do
-            Job.last(10).map do |job|
+            Job.where(preparer_id: 1).last(10).map do |job|
+              li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status} - #{job.preparer.name}", admin_job_path(job))
+            end
+          end
+        end
+      end
+      column do
+        panel "Jobs Todo" do
+          ul do
+            Job.where(preparer_id: 1, status: :todo).last(10).map do |job|
               li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status} - #{job.preparer.name}", admin_job_path(job))
             end
           end

@@ -7,6 +7,22 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
+  scope "All Jobs" do |job|
+    Job.all
+  end
+  scope "Emily's Jobs" do |job|
+    job.where(preparer_id: 1)
+  end
+  scope "Jenna's Jobs" do |job|
+    job.where(preparer_id: 2)
+  end
+  scope "Amanda's Jobs" do |job|
+      job.where(preparer_id: 3)
+  end
+  scope "Uto's Jobs" do |job|
+    job.where(preparer_id: 4)
+  end
+
   filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}.sort
   filter :client_id, as: :select, label: "Client ID"
   filter :status, as: :select
