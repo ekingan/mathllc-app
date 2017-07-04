@@ -7,30 +7,27 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
-  scope "All Jobs In Process" do |job|
+  scope "All Jobs Not Done" do |job|
     job.where.not(status: :done )
   end
-  scope "Emily's Jobs" do |job|
-    job.where(preparer_id: 1)
-  end
-  scope "Jenna's Jobs" do |job|
-    job.where(preparer_id: 2)
-  end
-  scope "Amanda's Jobs" do |job|
-      job.where(preparer_id: 3)
-  end
-  scope "Uto's Jobs" do |job|
-    job.where(preparer_id: 4)
-  end
   scope "Done Jobs" do |job|
-    job.where(status: :done)
+    job.done
+  end
+  scope "Ready Jobs" do |job|
+    job.ready
+  end
+  scope "Jobs Needing Attention" do |job|
+    job.where(status: [:commited, :todo, :in_progress, :need_info, :need_signatures])
+  end
+  scope "Filed Jobs" do |job|
+    job.filed
   end
   scope "All Jobs" do |job|
     Job.all
   end
 
-  filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}.sort
-  filter :client_id, as: :select, label: "Client ID"
+  filter :preparer
+  filter :client, collection: proc { Client.order(:last_name) }
   filter :status, as: :select, collection: Job.statuses
   filter :fed_form, as: :select, collection: Job.fed_forms
   filter :job_type, as: :select, collection: Job.job_types
@@ -41,13 +38,8 @@ ActiveAdmin.register Job do
 
   index do
     column :id
-    column "Client", sortable: :client_id do |job|
-      c = Client.find(job.client_id)
-      link_to [c.last_name, c.first_name].join(' '), admin_client_path(job.client_id)
-    end
-    column "Preparer", sortable: :preparer_id do |job|
-      link_to Preparer.find(job.preparer_id).name, admin_preparer_path(job.preparer_id)
-    end
+    column :client
+    column :preparer
     column "Job Type" do |job|
       job.fed_form || job.job_type
     end
