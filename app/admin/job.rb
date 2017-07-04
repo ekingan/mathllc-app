@@ -1,14 +1,14 @@
 ActiveAdmin.register Job do
   permit_params :fed_form, :primary_state, :second_state, :third_state, :tmse, :portland, :status,
               :printed, :scanned, :uploaded, :filed, :ack_fed, :ack_primary_state,
-              :ack_second_state, :ack_third_state, :due_date, :rejected,
+              :ack_second_state, :ack_third_state, :due_date, :rejected, :job_type,
               :notes, :preparer, :client, :client_id, :preparer_id, :payment_id, preparer_attributes: [:first_name, :id],
               client_attributes: [:last_name, :id], payment_attributes: [:amount, :check_number, :payment_type]
 
   menu priority: 3
 
-  scope "All Jobs" do |job|
-    Job.all
+  scope "All Jobs In Process" do |job|
+    job.where.not(status: :done )
   end
   scope "Emily's Jobs" do |job|
     job.where(preparer_id: 1)
@@ -21,6 +21,12 @@ ActiveAdmin.register Job do
   end
   scope "Uto's Jobs" do |job|
     job.where(preparer_id: 4)
+  end
+  scope "Done Jobs" do |job|
+    job.where(status: :done)
+  end
+  scope "All Jobs" do |job|
+    Job.all
   end
 
   filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}.sort
@@ -40,6 +46,9 @@ ActiveAdmin.register Job do
     end
     column "Preparer", sortable: :preparer_id do |job|
       link_to Preparer.find(job.preparer_id).name, admin_preparer_path(job.preparer_id)
+    end
+    column "Job Type" do |job|
+      job.fed_form || job.job_type
     end
     column :fed_form
     column :status, sortable: :status do |job|
@@ -76,6 +85,7 @@ ActiveAdmin.register Job do
             row "Payment" do
               number_to_currency(job.payment.amount) if job.payment
             end
+            row :job_type
             row :due_date
           end
         end
@@ -154,7 +164,7 @@ ActiveAdmin.register Job do
       end
       tab "Other Job Type" do
         f.inputs "Job Info" do
-          f.input :type
+          f.input :job_type
         end
       end
     end

@@ -12,9 +12,9 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel "Recent Jobs Added" do
+        panel "Jobs to follow up on" do
           ul do
-            Job.where(preparer_id: 1).last(10).map do |job|
+            Job.where(preparer_id: 1, status: :waiting_for_info || :need_signatures).last(10).map do |job|
               li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status} - #{job.preparer.name}", admin_job_path(job))
             end
           end
@@ -24,7 +24,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Jobs Todo" do
           ul do
             Job.where(preparer_id: 1, status: :todo).last(10).map do |job|
-              li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status} - #{job.preparer.name}", admin_job_path(job))
+              li link_to("#{job.client.last_name} " " #{job.client.first_name}", admin_job_path(job))
             end
           end
         end

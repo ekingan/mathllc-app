@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20170618161221) do
     t.bigint "preparer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "type"
+    t.integer "job_type"
     t.index ["client_id"], name: "index_jobs_on_client_id"
     t.index ["preparer_id"], name: "index_jobs_on_preparer_id"
   end

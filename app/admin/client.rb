@@ -32,7 +32,7 @@ index do
   column :entity_type
   column :due_date
   column :preparer, sortable: :preparer do |client|
-    client.jobs.map(&:preparer).map(&:first_name).first
+    client.jobs.map(&:preparer).map(&:first_name).join(", ")
   end
   actions
 end
