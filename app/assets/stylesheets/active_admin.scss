@@ -31,6 +31,6 @@ $panelHeaderBck: #002744;
 .status_tag { background: #6090DB;
 	&.ready, &.complete, &.completed, &.green { background: #8daa92; }
   &.in_progress, &.warning, &.orange { background: #e29b20; }
-  &.rejected, &.waiting_for_info, &.need_signatures { background: #d45f53; }
+  &.rejected, &.need_info, &.need_signatures { background: #d45f53; }
 
 }
