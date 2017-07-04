@@ -28,4 +28,9 @@ $panelHeaderBck: #002744;
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
-.status_tag { background: #6090DB; }
+.status_tag { background: #6090DB;
+	&.ready, &.complete, &.completed, &.green { background: #8daa92; }
+  &.in_progress, &.warning, &.orange { background: #e29b20; }
+  &.rejected, &.waiting_for_info, &.need_signatures { background: #d45f53; }
+
+}
