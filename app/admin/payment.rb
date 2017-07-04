@@ -25,7 +25,7 @@ ActiveAdmin.register Payment do
     column "Amount" do |payment|
     	number_to_currency(payment.amount)
     end
-    column :payment_type
+    column :payment_type, as: :select, collection: Payment.payment_types
     column :check_number
     column :created_at
     actions

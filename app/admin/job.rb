@@ -31,8 +31,9 @@ ActiveAdmin.register Job do
 
   filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}.sort
   filter :client_id, as: :select, label: "Client ID"
-  filter :status, as: :select
-  filter :fed_form
+  filter :status, as: :select, collection: Job.statuses
+  filter :fed_form, as: :select, collection: Job.fed_forms
+  filter :job_type, as: :select, collection: Job.job_types
   filter :ack_fed
   filter :ack_primary_state
   filter :due_date
@@ -50,7 +51,6 @@ ActiveAdmin.register Job do
     column "Job Type" do |job|
       job.fed_form || job.job_type
     end
-    column :fed_form
     column :status, sortable: :status do |job|
       status_tag job.status
     end
