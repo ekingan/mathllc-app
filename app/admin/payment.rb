@@ -7,7 +7,7 @@ ActiveAdmin.register Payment do
 	filter :job_id, as: :select
 	filter :amount
 	filter :created_at
-	filter :payment_type, as: :select
+	filter :payment_type, as: :select, collection: Payment.payment_types
 	filter :check_number
 
 	index do
@@ -25,7 +25,7 @@ ActiveAdmin.register Payment do
     column "Amount" do |payment|
     	number_to_currency(payment.amount)
     end
-    column :payment_type, as: :select, collection: Payment.payment_types
+    column :payment_type
     column :check_number
     column :created_at
     actions
