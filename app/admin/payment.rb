@@ -54,7 +54,7 @@ ActiveAdmin.register Payment do
 	form do |f|
     f.semantic_errors *f.object.errors.keys
 		f.inputs "Payment Info" do
-			f.input :job, as: :select, member_label: Proc.new { |j| j.id }
+			f.input :job, member_label: Proc.new { |j| "#{j.id}-#{j.client.name}" }
 			f.input :amount
 			f.input :payment_type
 			f.input :check_number

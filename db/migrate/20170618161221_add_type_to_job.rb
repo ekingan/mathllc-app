@@ -6,5 +6,4 @@ class AddTypeToJob < ActiveRecord::Migration[5.1]
   def down
     remove_column :jobs, :job_type
   end
-
 end

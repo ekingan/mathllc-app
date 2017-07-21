@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618161221) do
+ActiveRecord::Schema.define(version: 20170721144849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(version: 20170618161221) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "primary_preparer_id"
+    t.integer "tax_id"
+    t.index ["primary_preparer_id"], name: "index_clients_on_primary_preparer_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -136,6 +139,7 @@ ActiveRecord::Schema.define(version: 20170618161221) do
     t.index ["preparer_id"], name: "index_wages_on_preparer_id"
   end
 
+  add_foreign_key "clients", "preparers", column: "primary_preparer_id"
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "preparers"
   add_foreign_key "payments", "jobs"
