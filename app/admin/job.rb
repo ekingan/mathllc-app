@@ -75,6 +75,10 @@ ActiveAdmin.register Job do
     link_to "New Job", new_admin_job_path
   end
 
+  show :title do |job|
+    job.to_param
+  end
+
   show do
     columns do
       column do

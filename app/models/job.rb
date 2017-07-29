@@ -10,8 +10,4 @@ class Job < ApplicationRecord
     "#{id} #{client.last_name}".parameterize
   end
 
-  def slug
-    "#{client.last_name}" - "#{id}"
-  end
-
 end
