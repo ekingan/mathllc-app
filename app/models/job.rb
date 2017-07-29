@@ -6,8 +6,6 @@ class Job < ApplicationRecord
   enum status: [:commited, :todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :done, :extended]
   enum job_type: [:bookkeeping, :consulting, :referral, :teaching]
 
-  before_save :slugify_job
-
   def to_param
     "#{id} #{client.last_name}".parameterize
   end
