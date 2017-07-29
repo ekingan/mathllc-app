@@ -7,6 +7,18 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
+  scope "Emily's Jobs" do |job|
+    job.where(preparer: 1)
+  end
+  scope "Jenna's Jobs" do |job|
+    job.where(preparer: 2)
+  end
+  scope "Amanda's Jobs" do |job|
+    job.where(preparer: 3)
+  end
+  scope "Uto's Jobs" do |job|
+    job.where(preparer: 4)
+  end
   scope "All Jobs Not Done" do |job|
     job.where.not(status: :done )
   end
@@ -18,9 +30,6 @@ ActiveAdmin.register Job do
   end
   scope "Jobs Needing Attention" do |job|
     job.where(status: [:commited, :todo, :in_progress, :need_info, :need_signatures])
-  end
-  scope "Filed Jobs" do |job|
-    job.filed
   end
   scope "All Jobs" do |job|
     Job.all
@@ -49,19 +58,22 @@ ActiveAdmin.register Job do
     column :printed
     column :scanned
     column :uploaded
-    column :filed
-    column "Fed Accepted", :ack_fed
-    column "State Accepted", :ack_primary_state
-    column :rejected
+    column "Filed" do |job|
+      if job.filed
+        status_tag "Yes"
+      else
+        status_tag "No"
+      end
+    end
 		column "Paid", sortable: :paid do |job|
 			status_tag job.payment ? "yes" : 'no'
 		end
     actions
   end
-  # overrides create of new client
-  # action_item only: [:show] do |job|
-  #   link_to "Receive Payment", new_admin_payment_path(job)
-  # end
+
+  action_item only: [:show] do |job|
+    link_to "New Job", new_admin_job_path
+  end
 
   show do
     columns do
