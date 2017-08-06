@@ -18,9 +18,9 @@ module DataFixers
 		def update_client(row)
 			data = row.to_hash
 			c = Client.create(
-				first_name: data['Taxpayer First Name'],
-				last_name: data['Taxpayer Last Name'],
-				company: data['Taxpayer Name'],
+				first_name: data['Taxpayer First Name'].upcase,
+				last_name: data['Taxpayer Last Name'].upcase,
+				company: data['Taxpayer Name'].upcase,
 				date_of_birth: parse_date(data['Taxpayer Date of Birth']),
 				email: data['Taxpayer Email Address'],
 				street: data['Street Address'],

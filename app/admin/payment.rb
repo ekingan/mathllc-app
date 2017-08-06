@@ -3,6 +3,10 @@ ActiveAdmin.register Payment do
 	permit_params :client_attributes, :job_attributes, :preparer_attributes, :job_id, :amount, :payment_type, :check_number
 	menu priority: 4
 
+	action_item only: [:show] do |job|
+		link_to "New Payment", new_admin_payment_path
+	end
+
 	filter :preparer
 	filter :job_id, as: :select
 	filter :amount

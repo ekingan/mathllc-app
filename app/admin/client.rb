@@ -2,7 +2,7 @@ ActiveAdmin.register Client do
   permit_params :first_name, :last_name, :company, :date_of_birth, :email, :phone, :street, :city,
                 :state, :zip_code, :occupation, :entity_type, :tax_year_ends, :filing_status,
                 :number_of_dependents, :spouse_first_name, :spouse_last_name, :spouse_date_of_birth,
-                :spouse_phone, :spouse_email, :spouse_occupation, :notes, :preparer_attributes
+                :spouse_phone, :spouse_email, :spouse_occupation, :notes, :primary_preparer_id, :preparer_attributes
   menu priority: 2
   config.sort_order = :last_name_asc
 
@@ -13,12 +13,8 @@ ActiveAdmin.register Client do
   filter :spouse_first_name
   filter :spouse_last_name
   filter :email
-  filter :phone
-  filter :city
   filter :state
-  filter :occupation
-  filter :tax_year_ends
-  filter :filing_status, as: :select
+  filter :primary_preparer, as: :select, collection: proc { Preparer.all }
 
 index do
   column :id
@@ -28,7 +24,11 @@ index do
   column :entity_type
   column :due_date
   column :preparer, sortable: :preparer do |client|
-    client.jobs.map(&:preparer).map(&:first_name).join(", ")
+    if client.primary_preparer_id
+      Preparer.find(client.primary_preparer_id).first_name
+    else
+      client.jobs.map(&:preparer).map(&:first_name).join(", ")
+    end
   end
   actions
 end
