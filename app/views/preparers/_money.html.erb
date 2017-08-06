@@ -30,7 +30,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @preparer.jobs.sort_by(&:created_at).reverse.each do |job| %>
+		<% @preparer.jobs.sort_by(&:updated_at).reverse.each do |job| %>
 			<% if job.payment %>
 		<tr>
 			<th><%= job.client.last_name %></th>

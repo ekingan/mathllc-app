@@ -9,5 +9,5 @@ class Job < ApplicationRecord
   def to_param
     "#{id} #{client.last_name}".parameterize
   end
-
+  
 end

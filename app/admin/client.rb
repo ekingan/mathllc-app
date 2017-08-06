@@ -17,12 +17,10 @@ ActiveAdmin.register Client do
   filter :primary_preparer, as: :select, collection: proc { Preparer.all }
 
 index do
-  column :id
   column :last_name
   column :first_name
   column :company
   column :entity_type
-  column :due_date
   column :preparer, sortable: :preparer do |client|
     if client.primary_preparer_id
       Preparer.find(client.primary_preparer_id).first_name
