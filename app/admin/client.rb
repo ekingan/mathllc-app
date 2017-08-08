@@ -10,6 +10,7 @@ ActiveAdmin.register Client do
   filter :company
   filter :first_name
   filter :last_name
+  filter :tax_id, as: "Tax ID"
   filter :spouse_first_name
   filter :spouse_last_name
   filter :email
@@ -48,6 +49,7 @@ show do
         attributes_table_for client do
           row :entity_type
           row :company
+          row :tax_id, as: "Tax ID"
           row :filing_status
           row :number_of_dependents
           row :tax_year_ends, as: :datepicker, datepicker_options: { dateFormat: "mm/dd" }
@@ -88,6 +90,8 @@ end
       f.input :first_name
       f.input :last_name
       f.input :entity_type, as: :select
+      f.input :tax_id, label: "Tax ID"
+      f.input :primary_preparer_id
       f.input :company
       f.input :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
       f.input :email
