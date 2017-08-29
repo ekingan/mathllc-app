@@ -11,16 +11,16 @@ ActiveAdmin.register Job do
     job.where.not(status: :done )
   end
   scope "Emily's Jobs" do |job|
-    job.where(preparer: 1)
+    job.where(preparer: 1) && job.where.not(status: :done )
   end
   scope "Jenna's Jobs" do |job|
-    job.where(preparer: 2)
+    job.where(preparer: 2) && job.where.not(status: :done )
   end
   scope "Amanda's Jobs" do |job|
-    job.where(preparer: 3)
+    job.where(preparer: 3) && job.where.not(status: :done )
   end
   scope "Uto's Jobs" do |job|
-    job.where(preparer: 4)
+    job.where(preparer: 4) && job.where.not(status: :done )
   end
   scope "Done Jobs" do |job|
     job.done
@@ -45,7 +45,12 @@ ActiveAdmin.register Job do
   filter :due_date
   filter :rejected, as: :select
 
+  # batch_action only: [:index] do
+  #   link_to "Mark as Done", done_job_admin_job_path(job.id)
+  # end
+
   index do
+    selectable_column
     column :id
     column :client
     column :preparer
