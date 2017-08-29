@@ -7,6 +7,9 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
+  scope "In Process", default: true do |job|
+    job.where.not(status: :done )
+  end
   scope "Emily's Jobs" do |job|
     job.where(preparer: 1)
   end
@@ -18,9 +21,6 @@ ActiveAdmin.register Job do
   end
   scope "Uto's Jobs" do |job|
     job.where(preparer: 4)
-  end
-  scope "All Jobs Not Done" do |job|
-    job.where.not(status: :done )
   end
   scope "Done Jobs" do |job|
     job.done

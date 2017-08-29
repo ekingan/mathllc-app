@@ -17,6 +17,10 @@ ActiveAdmin.register Wage do
     actions
   end
 
+	action_item only: [:show] do |job|
+		link_to "New Wage", new_admin_wage_path
+	end
+
 	show do
 		attributes_table do
 			row "Preparer" do
