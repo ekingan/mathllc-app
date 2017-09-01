@@ -45,9 +45,75 @@ ActiveAdmin.register Job do
   filter :due_date
   filter :rejected, as: :select
 
-  # batch_action only: [:index] do
-  #   link_to "Mark as Done", done_job_admin_job_path(job.id)
-  # end
+  batch_action :todo do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:status, :todo)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs todo"
+  end
+
+  batch_action :in_progress do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:status, :in_progress)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs in progress"
+  end
+
+  batch_action :need_info do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:status, :need_info)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as needing info"
+  end
+
+  batch_action :need_signatures do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:status, :need_signatures)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as needing signatures"
+  end
+
+  batch_action :upload do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:uploaded, true)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as uploaded"
+  end
+
+  batch_action :scan do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:scanned, true)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as scanned"
+  end
+
+  batch_action :print do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:printed, true)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as printed"
+  end
+
+  batch_action :ready do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:status, :ready)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as ready"
+  end
+
+  batch_action :file do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:filed, Time.now)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as filed"
+  end
+
+  batch_action :finish do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:status, :done)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as done"
+  end
 
   index do
     selectable_column
