@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721144849) do
+ActiveRecord::Schema.define(version: 20170904141358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,8 @@ ActiveRecord::Schema.define(version: 20170721144849) do
     t.string "job_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_preparers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -127,7 +129,10 @@ ActiveRecord::Schema.define(version: 20170721144849) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.integer "role"
+    t.bigint "preparer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["preparer_id"], name: "index_users_on_preparer_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -143,5 +148,7 @@ ActiveRecord::Schema.define(version: 20170721144849) do
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "preparers"
   add_foreign_key "payments", "jobs"
+  add_foreign_key "preparers", "users"
+  add_foreign_key "users", "preparers"
   add_foreign_key "wages", "preparers"
 end
