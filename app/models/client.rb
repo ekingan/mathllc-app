@@ -8,6 +8,6 @@ class Client < ApplicationRecord
 	validates :tax_id, length: { is: 4, :allow_nil => true}
 
 	def name
-		company ? "#{company}" : "#{first_name} #{last_name}"
+		"#{last_name} #{first_name} // #{company}"
 	end
 end

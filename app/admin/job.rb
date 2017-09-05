@@ -147,7 +147,7 @@ ActiveAdmin.register Job do
               "#{job.preparer.first_name}  #{job.preparer.last_name}"
             end
             row "Client" do
-              "#{job.client.first_name}  #{job.client.last_name}"
+              "#{job.client.name}"
             end
             row "Payment" do
               number_to_currency(job.payment.amount) if job.payment
