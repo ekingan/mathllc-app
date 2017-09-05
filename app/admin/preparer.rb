@@ -1,5 +1,5 @@
 ActiveAdmin.register Preparer do
-  permit_params :first_name, :last_name, :username, :email, :phone, :street, :city,
+  permit_params :first_name, :last_name, :username, :user_id, :email, :phone, :street, :city,
                 :state, :zip_code, :date_of_birth, :role, :license_number, :job_title
   menu priority: 1
 
@@ -28,7 +28,8 @@ ActiveAdmin.register Preparer do
     f.inputs "Preparer Info" do
       f.input :first_name
       f.input :last_name
-      f.input :email
+      f.input :user, as: :select, collection: User.all.map {|u| [u.email, u.id.to_i]}
+      f.input :email, label: "Alternate Email"
       f.input :phone
       f.input :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
     end
