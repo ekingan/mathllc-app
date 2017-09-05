@@ -40,7 +40,7 @@ ActiveAdmin.register_page "Dashboard" do
           ul do
             jobs.each do |job|
               Payment.where(job_id: job.id).map do |pay|
-                li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - #{pay.created_at.to_date} ", admin_preparer_path(pay.job.preparer_id))
+                li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - #{pay.created_at.to_date} ", admin_payment_path(pay))
               end
             end
           end
