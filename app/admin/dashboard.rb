@@ -10,7 +10,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Jobs to follow up on" do
           ul do
             jobs.where(status: :need_info || :need_signatures).last(10).map do |job|
-              li link_to("#{job.client.last_name} " " #{job.client.first_name} - #{job.status} - #{job.preparer.name}", admin_job_path(job))
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
         end
@@ -19,7 +19,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Jobs Todo" do
           ul do
             jobs.where(status: :todo).map do |job|
-              li link_to("#{job.client.first_name} #{job.client.last_name} - #{job.updated_at}", admin_job_path(job))
+              li link_to("#{job.client.name} - #{job.updated_at.to_date}", admin_job_path(job))
             end
           end
         end
@@ -31,7 +31,7 @@ ActiveAdmin.register_page "Dashboard" do
           ul do
             jobs.each do |job|
               Payment.where(job_id: job.id).map do |pay|
-                li link_to("#{pay.job.client.last_name} - #{number_to_currency(pay.amount)}", admin_preparer_path(pay.job.preparer_id))
+                li link_to("#{pay.job.client.name} - #{number_to_currency(pay.amount)}", admin_preparer_path(pay.job.preparer_id))
               end
             end
           end

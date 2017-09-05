@@ -10,5 +10,4 @@ class Client < ApplicationRecord
 	def name
 		"#{last_name} #{first_name} // #{company}"
 	end
-
 end
