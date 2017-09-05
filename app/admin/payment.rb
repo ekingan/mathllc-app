@@ -37,7 +37,9 @@ ActiveAdmin.register Payment do
 
 	show do
 		attributes_table do
-			row :job_id
+			row "Job" do
+			  link_to "#{payment.job_id}", admin_job_path(payment.job_id)
+			end
 			row "Preparer" do
 				link_to "#{payment.job.preparer.first_name}  #{payment.job.preparer.last_name}", admin_preparer_path(payment.job.preparer)
 			end
