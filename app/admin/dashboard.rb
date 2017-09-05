@@ -9,7 +9,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Jobs to follow up on" do
           ul do
-            jobs.where(status: :need_info || :need_signatures).last(10).map do |job|
+            jobs.where(status: :need_info).map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
@@ -26,6 +26,15 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
     columns do
+      column do
+        panel "Jobs needing signatures" do
+          ul do
+            jobs.where(status: :need_signatures).map do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
+            end
+          end
+        end
+      end
       column do
         panel "Recent Payments" do
           ul do
