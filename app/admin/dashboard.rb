@@ -3,7 +3,7 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    jobs = Job.where(preparer_id: current_user.preparer.id)
+    jobs = Job.where(preparer_id: current_user.preparer.id).order(updated_at: :desc)
 
     columns do
       column do
@@ -19,7 +19,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Jobs Todo" do
           ul do
             jobs.where(status: :todo).map do |job|
-              li link_to("#{job.client.first_name} #{job.client.last_name}", admin_job_path(job))
+              li link_to("#{job.client.first_name} #{job.client.last_name} - #{job.updated_at}", admin_job_path(job))
             end
           end
         end
@@ -30,7 +30,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Payments" do
           ul do
             jobs.each do |job|
-              Payment.where(job_id: job.id).reverse.map do |pay|
+              Payment.where(job_id: job.id).map do |pay|
                 li link_to("#{pay.job.client.last_name} - #{number_to_currency(pay.amount)}", admin_preparer_path(pay.job.preparer_id))
               end
             end

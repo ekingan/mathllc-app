@@ -10,18 +10,6 @@ ActiveAdmin.register Job do
   scope "In Process", default: true do |job|
     job.where.not(status: :done )
   end
-  scope "Emily's Jobs" do |job|
-    job.where(preparer: 1) && job.where.not(status: :done )
-  end
-  scope "Jenna's Jobs" do |job|
-    job.where(preparer: 2) && job.where.not(status: :done )
-  end
-  scope "Amanda's Jobs" do |job|
-    job.where(preparer: 3) && job.where.not(status: :done )
-  end
-  scope "Uto's Jobs" do |job|
-    job.where(preparer: 4) && job.where.not(status: :done )
-  end
   scope "Done Jobs" do |job|
     job.done
   end
