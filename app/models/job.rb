@@ -9,4 +9,9 @@ class Job < ApplicationRecord
   def to_param
     "#{id} #{client.last_name}".parameterize
   end
+
+  def file!
+    self.update_attribute(:status, :filed)
+    self.update_attribute(:filed, Time.now)
+  end
 end

@@ -91,7 +91,7 @@ ActiveAdmin.register Job do
 
   batch_action :file do |selection|
     Job.find(selection).each do |job|
-      job.update_attribute(:filed, Time.now)
+      job.file!
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as filed"
   end
