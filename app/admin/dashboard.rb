@@ -36,6 +36,26 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column do
+        panel "Jobs in progress" do
+          ul do
+            jobs.where(status: :in_progress).map do |job|
+              li link_to("#{job.client.name} - #{job.updated_at.to_date}", admin_job_path(job))
+            end
+          end
+        end
+      end
+    end
+    columns do
+      column do
+        panel "Filed Jobs" do
+          ul do
+            jobs.where(status: :filed).map do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
+            end
+          end
+        end
+      end
+      column do
         panel "Recent Payments" do
           ul do
             jobs.each do |job|
