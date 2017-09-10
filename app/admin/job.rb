@@ -96,6 +96,20 @@ ActiveAdmin.register Job do
     redirect_to admin_jobs_path, :notice => "Marked jobs as filed"
   end
 
+  batch_action :ack_fed do |selection|
+    Job.find(selection).each do |job|
+      job.fed_accepted!
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as federally accepted"
+  end
+
+  batch_action :ack_primary_state do |selection|
+    Job.find(selection).each do |job|
+      job.state_accepted!
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as federally accepted"
+  end
+
   batch_action :finish do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:status, :done)

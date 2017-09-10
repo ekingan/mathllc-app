@@ -14,4 +14,12 @@ class Job < ApplicationRecord
     self.update_attribute(:status, :filed)
     self.update_attribute(:filed, Time.now)
   end
+
+  def fed_accepted!
+    self.update_attribute(:ack_fed, Time.now)
+  end
+
+  def state_accepted!
+    self.update_attribute(:ack_primary_state, Time.now)
+  end
 end
