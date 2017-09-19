@@ -112,6 +112,13 @@ ActiveAdmin.register Job do
 
   batch_action :finish do |selection|
     Job.find(selection).each do |job|
+      job.update_attribute(:paid, true)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as done"
+  end
+
+  batch_action :finish do |selection|
+    Job.find(selection).each do |job|
       job.update_attribute(:status, :done)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as done"

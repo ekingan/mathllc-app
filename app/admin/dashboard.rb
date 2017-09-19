@@ -18,7 +18,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Jobs Todo" do
           ul do
-            jobs.where(status: :todo).map do |job|
+            jobs.where(status: :todo).reverse.map do |job|
               li link_to("#{job.client.name} - #{job.updated_at.to_date}", admin_job_path(job))
             end
           end
@@ -29,7 +29,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Jobs needing signatures" do
           ul do
-            jobs.where(status: :need_signatures).map do |job|
+            jobs.where(status: :need_signatures).reverse.map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
@@ -38,9 +38,29 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Jobs in progress" do
           ul do
-            jobs.where(status: :in_progress).map do |job|
+            jobs.where(status: :in_progress).reverse.map do |job|
               li link_to("#{job.client.name} - #{job.updated_at.to_date}", admin_job_path(job))
             end
+          end
+        end
+      end
+    end
+    columns do
+      column do
+        panel "Ready Jobs" do
+          ul do
+            jobs.where(status: :ready).map do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
+            end
+          end
+        end
+      end
+      column do
+        panel "Unpaid Jobs" do
+          ul do
+            # jobs.where('paid = false').map do |job|
+            #   li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
+            # end
           end
         end
       end
