@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a CMS for my accounting company, Math LLC. It allows preparers to track their jobs and clients.
 
-Things you may want to cover:
 
-* Ruby version
+* Ruby version 2.5
 
-* System dependencies
+* Rails 5.1.1
 
-* Configuration
+* PostgreSQL 9.6
 
-* Database creation
+## todo
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Create test suite

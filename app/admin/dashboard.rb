@@ -8,7 +8,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Jobs to follow up on" do
-          ul do
+          ol do
             jobs.where(status: :need_info).map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
@@ -17,7 +17,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
       column do
         panel "Jobs Todo" do
-          ul do
+          ol do
             jobs.where(status: :todo).reverse.map do |job|
               li link_to("#{job.client.name} - #{job.updated_at.to_date}", admin_job_path(job))
             end
@@ -28,7 +28,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Jobs needing signatures" do
-          ul do
+          ol do
             jobs.where(status: :need_signatures).reverse.map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
@@ -37,7 +37,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
       column do
         panel "Jobs in progress" do
-          ul do
+          ol do
             jobs.where(status: :in_progress).reverse.map do |job|
               li link_to("#{job.client.name} - #{job.updated_at.to_date}", admin_job_path(job))
             end
@@ -48,7 +48,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Ready Jobs" do
-          ul do
+          ol do
             jobs.where(status: :ready).map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
@@ -57,7 +57,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
       column do
         panel "Unpaid Jobs" do
-          ul do
+          ol do
             # jobs.where('paid = false').map do |job|
             #   li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             # end
@@ -68,7 +68,7 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Filed Jobs" do
-          ul do
+          ol do
             jobs.where(status: :filed).map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
@@ -77,7 +77,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
       column do
         panel "Recent Payments" do
-          ul do
+          ol do
             jobs.each do |job|
               Payment.where(job_id: job.id).map do |pay|
                 li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - #{pay.created_at.to_date} ", admin_payment_path(pay))
