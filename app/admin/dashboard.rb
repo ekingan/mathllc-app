@@ -69,8 +69,8 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Filed Jobs" do
           ol do
-            jobs.where(status: :filed).limit(25)map do |job|
-              li link_to("#{job.client.name} - #{job.bill}", admin_job_path(job))
+            jobs.where(status: :filed).limit(25).map do |job|
+              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job))
             end
           end
         end
