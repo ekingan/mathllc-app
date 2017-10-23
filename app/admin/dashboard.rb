@@ -69,7 +69,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Filed Jobs" do
           ol do
-            jobs.where(status: :filed).map do |job|
+            jobs.where(status: :filed).limit(25)map do |job|
               li link_to("#{job.client.name} - #{job.bill}", admin_job_path(job))
             end
           end
@@ -79,7 +79,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Payments" do
           ol do
             jobs.each do |job|
-              Payment.where(job_id: job.id).last(20).map do |pay|
+              Payment.where(job_id: job.id).limit(25).map do |pay|
                 li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - #{pay.created_at.to_date} ", admin_payment_path(pay))
               end
             end
