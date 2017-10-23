@@ -2,7 +2,7 @@ ActiveAdmin.register Job do
   permit_params :fed_form, :primary_state, :second_state, :third_state, :tmse, :portland, :status,
               :printed, :scanned, :uploaded, :filed, :ack_fed, :ack_primary_state,
               :ack_second_state, :ack_third_state, :due_date, :rejected, :job_type,
-              :notes, :preparer, :client, :client_id, :preparer_id, :payment_id, preparer_attributes: [:first_name, :id],
+              :notes, :bill, :preparer, :client, :client_id, :preparer_id, :payment_id, preparer_attributes: [:first_name, :id],
               client_attributes: [:last_name, :id], payment_attributes: [:amount, :check_number, :payment_type]
 
   menu priority: 3
@@ -170,7 +170,10 @@ ActiveAdmin.register Job do
             row "Client" do
               "#{job.client.name}"
             end
-            row "Payment" do
+            row "Bill Amount" do
+              number_to_currency(job.bill)
+            end
+            row "Payment Received" do
               number_to_currency(job.payment.amount) if job.payment
             end
             row :job_type
@@ -240,6 +243,7 @@ ActiveAdmin.register Job do
           f.input :primary_state
           f.input :tmse
           f.input :portland
+          f.input :bill
         end
         f.inputs "Acceptances" do
           f.input :filed, as: :datepicker

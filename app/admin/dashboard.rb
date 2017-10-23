@@ -58,9 +58,9 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Unpaid Jobs" do
           ol do
-            # jobs.where('paid = false').map do |job|
-            #   li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
-            # end
+            jobs.each do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job)) unless job.payment
+            end
           end
         end
       end
