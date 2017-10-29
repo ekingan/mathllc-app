@@ -79,8 +79,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Payments" do
           ol do
             #refactor this
-            jobs.paid.each do |job|
-              Payment.limit(35).where(job_id: job.id).map do |pay|
+            jobs.paid..limit(35).each do |job|
+              Payment.where(job_id: job.id).map do |pay|
                 li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - Received on  #{pay.created_at.to_date.strftime("%m/%d/%Y")} ", admin_payment_path(pay))
               end
             end
