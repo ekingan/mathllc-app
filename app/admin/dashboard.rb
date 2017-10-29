@@ -70,7 +70,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Filed Jobs" do
           ol do
             jobs.filed.limit(25).map do |job|
-              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
+              li link_to("#{job.client.name} - #{job.filed.strftime('%m/%d/%Y')}", admin_job_path(job))
             end
           end
         end
