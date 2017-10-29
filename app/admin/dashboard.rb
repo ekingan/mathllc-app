@@ -59,7 +59,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Unpaid Jobs" do
           ol do
             jobs.where(status: :filed).each do |job|
-              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job)) unless job.payment
+              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job)) unless job.payment
             end
           end
         end
@@ -70,7 +70,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Filed Jobs" do
           ol do
             jobs.where(status: :filed).limit(25).map do |job|
-              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job))
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
         end
@@ -78,8 +78,8 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Payments" do
           ol do
-            jobs.each do |job|
-              Payment.where(job_id: job.id).limit(25).map do |pay|
+            jobs.order(:updated_at).limit(25).each do |job|
+              Payment.where(job_id: job.id).map do |pay|
                 li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - #{pay.created_at.to_date} ", admin_payment_path(pay))
               end
             end
