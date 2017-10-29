@@ -49,7 +49,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Ready Jobs" do
           ol do
-            jobs.where(status: :ready).map do |job|
+            jobs.ready.map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
@@ -58,7 +58,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Unpaid Jobs" do
           ol do
-            jobs.where(status: :filed).each do |job|
+            jobs.unpaid.filed.each do |job|
               li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job)) unless job.payment
             end
           end
@@ -69,7 +69,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Filed Jobs" do
           ol do
-            jobs.where(status: :filed).limit(25).map do |job|
+            jobs.filed.limit(25).map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
