@@ -19,7 +19,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Jobs Todo" do
           ol do
             jobs.where(status: :todo).reverse.map do |job|
-              li link_to("#{job.client.name} - #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
+              li link_to("#{job.client.name} - Recieved on #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
             end
           end
         end
@@ -39,7 +39,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Jobs in progress" do
           ol do
             jobs.where(status: :in_progress).reverse.map do |job|
-              li link_to("#{job.client.name} - #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
+              li link_to("#{job.client.name} - Update on #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
             end
           end
         end
@@ -80,7 +80,7 @@ ActiveAdmin.register_page "Dashboard" do
           ol do
             jobs.order(:updated_at).limit(50).each do |job|
               Payment.where(job_id: job.id).map do |pay|
-                li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - #{pay.created_at.to_date.strftime("%m/%d/%Y")} ", admin_payment_path(pay))
+                li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - Received on  #{pay.created_at.to_date.strftime("%m/%d/%Y")} ", admin_payment_path(pay))
               end
             end
           end
