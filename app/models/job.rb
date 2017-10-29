@@ -6,7 +6,9 @@ class Job < ApplicationRecord
   enum status: [:commited, :todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :done, :extended]
   enum job_type: [:bookkeeping, :consulting, :referral, :teaching]
 
-  scope :unpaid, -> { where.not(:id => Payment.select(:job_id).uniq) }
+  scope :unpaid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS null')}
+
+  scope :paid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS NOT null')}
 
   def to_param
     "#{id} #{client.last_name}".parameterize
