@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
     jobs = Job.where(preparer_id: current_user.preparer.id).order(id: :desc)
-    
+
     columns do
       column do
         panel "Jobs to follow up on" do
@@ -79,7 +79,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Payments" do
           ol do
             #refactor this
-            jobs.paid.each do |job|
+            jobs.paid.order(updated_at: :desc).each do |job|
               Payment.order(:updated_at).limit(50).where(job_id: job.id).map do |pay|
                 li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - Received on  #{pay.created_at.to_date.strftime("%m/%d/%Y")} ", admin_payment_path(pay))
               end
