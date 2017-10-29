@@ -39,7 +39,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Jobs in progress" do
           ol do
             jobs.where(status: :in_progress).reverse.map do |job|
-              li link_to("#{job.client.name} - Update on #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
+              li link_to("#{job.client.name} - Updated on #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
             end
           end
         end
