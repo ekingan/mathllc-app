@@ -8,7 +8,7 @@ class Job < ApplicationRecord
 
   scope :unpaid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS null')}
 
-  scope :paid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS NOT null')}
+  scope :paid, -> { joins('inner join payments on payments.job_id = jobs.id').where('payments.job_id IS NOT null')}
 
   def to_param
     "#{id} #{client.last_name}".parameterize
