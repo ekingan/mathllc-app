@@ -6,6 +6,8 @@ class Job < ApplicationRecord
   enum status: [:commited, :todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :done, :extended]
   enum job_type: [:bookkeeping, :consulting, :referral, :teaching]
 
+  scope :unpaid, -> { where.not(:id => Payment.select(:job_id).uniq) }
+
   def to_param
     "#{id} #{client.last_name}".parameterize
   end
