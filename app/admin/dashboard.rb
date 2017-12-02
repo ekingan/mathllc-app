@@ -78,7 +78,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Accepted Jobs" do
           ol do
-            jobs.accepted.limit(25).map do |job|
+            jobs.where(status: :accepted).reverse.map do |job|
               li link_to("#{job.client.name} - Accepted on #{job.accepted.strftime("%m/%d/%Y") if job.accepted}", admin_job_path(job))
             end
           end
