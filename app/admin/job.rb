@@ -235,6 +235,7 @@ ActiveAdmin.register Job do
       f.input :scanned
       f.input :uploaded
       f.input :due_date, as: :datepicker
+      f.input :bill
     end
     tabs do
       tab "Tax Return Info" do
@@ -243,7 +244,6 @@ ActiveAdmin.register Job do
           f.input :primary_state
           f.input :tmse
           f.input :portland
-          f.input :bill
         end
         f.inputs "Acceptances" do
           f.input :filed, as: :datepicker
