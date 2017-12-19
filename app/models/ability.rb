@@ -11,6 +11,7 @@ class Ability
       can :manage, User, id: user.id
       can :manage, Client
       can :manage, Job
+      can :read, Preparer
       can :read, ActiveAdmin::Page, name: "Dashboard"
       can :read, Wage, preparer_id: user.preparer.id
     end
