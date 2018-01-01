@@ -10,25 +10,28 @@ module DataFixers
 		end
 
 		def csv
-			file = 'CLIENTS_ALL'
+			file = 'CLIENTS'
 			path = Rails.root.join('lib', 'data_fixers', 'data', "#{file}.csv")
 			CSV.read(path, headers: true)
 		end
 
 		def tax_id(data)
-			data["Taxpayer ID"].to_s[-4..-1].to_i
+			data["Taxpayer ID"].to_s[-4..-1].to_i if data["Taxpayer ID"]
 		end
+
+    def format_name(name)
+      name.upcase unless name.nil?
+    end
 
 		def update_client(row)
 			data = row.to_hash
-			if c = Client.find_by_last_name(data['Taxpayer Last Name'])
+			if c = Client.find_by_company(data['Taxpayer Name'].upcase)
 				c.update_attributes(
 					tax_id: tax_id(data),
 					primary_preparer_id: data["Preparer Number"],
-					first_name: c.first_name.upcase,
-					last_name: c.last_name.upcase,
-					company: c.company.upcase,
-					entity_type: :INDIVIDUAL
+					first_name: format_name(data['Taxpayer First Name']),
+					last_name: format_name(data['Taxpayer Last Name']),
+					company: format_name(data['Taxpayer Name'])
 					)
 				puts "UPDATED CLIENT #{c.last_name}"
 			else

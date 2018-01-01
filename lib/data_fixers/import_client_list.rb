@@ -17,9 +17,9 @@ module DataFixers
 
 		def update_client(row)
 			data = row.to_hash
-			c = Client.create(
-				first_name: data['Taxpayer First Name'].upcase,
-				last_name: data['Taxpayer Last Name'].upcase,
+			if c = Client.create(
+				first_name: data['Taxpayer First Name'],
+				last_name: data['Taxpayer Last Name'],
 				company: data['Taxpayer Name'].upcase,
 				date_of_birth: parse_date(data['Taxpayer Date of Birth']),
 				email: data['Taxpayer Email Address'],
@@ -35,6 +35,9 @@ module DataFixers
 				spouse_occupation: data['Spouse Occupation'],
 				tax_year_ends: parse_date(data['Year End']))
 				puts "CREATED CLIENT #{c.last_name}"
+      else
+        puts "ERROR CREATING #{c.last_name}"
+      end
 		end
 
 		def parse_date(string)
