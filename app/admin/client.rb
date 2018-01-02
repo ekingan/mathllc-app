@@ -91,7 +91,7 @@ end
       f.input :last_name
       f.input :entity_type, as: :select
       f.input :tax_id, label: "Tax ID"
-      f.input :primary_preparer_id, as: :select, collection: [["Emily", 1], ["Jenna", 2], ["Amanda", 3], ["Uto", 4]]
+      f.input :primary_preparer_id, as: :select, collection: [["Emily", 1], ["Jenna", 2], ["Amanda", 3], ["Brian", 4], ["Debbie", 5]]
       f.input :company
       f.input :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
       f.input :email

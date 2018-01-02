@@ -10,6 +10,8 @@ class Job < ApplicationRecord
 
   scope :paid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS NOT null')}
 
+  #to-do Add partial payment scope
+
   def to_param
     "#{id} #{client.last_name}".parameterize
   end

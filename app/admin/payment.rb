@@ -64,6 +64,7 @@ ActiveAdmin.register Payment do
 			f.input :amount
 			f.input :payment_type
 			f.input :check_number
+      f.input :partial_payment
 		end
 		f.actions
 	end
