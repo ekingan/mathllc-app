@@ -6,11 +6,11 @@ class Job < ApplicationRecord
   enum status: [:commited, :todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :done, :extended, :accepted]
   enum job_type: [:bookkeeping, :consulting, :referral, :teaching]
 
-  scope :unpaid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS null')}
+  scope :unpaid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS null OR payments.partial_payment IS true')}
 
   scope :paid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS NOT null')}
 
-  #to-do Add partial payment scope
+  scope :not_done, -> { where.not(status: :done) }
 
   def to_param
     "#{id} #{client.last_name}".parameterize

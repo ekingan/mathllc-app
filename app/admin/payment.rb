@@ -1,6 +1,6 @@
 ActiveAdmin.register Payment do
 	belongs_to :job, optional: true
-	permit_params :client_attributes, :job_attributes, :preparer_attributes, :job_id, :amount, :payment_type, :check_number
+	permit_params :client_attributes, :job_attributes, :preparer_attributes, :job_id, :amount, :payment_type, :partial_payment, :check_number
 	menu priority: 4
 
 	action_item only: [:show] do |job|
@@ -54,6 +54,7 @@ ActiveAdmin.register Payment do
 			end
 			row :payment_type
 			row :check_number
+      row :partial_payment
 		end
 	end
 
