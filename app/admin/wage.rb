@@ -1,5 +1,5 @@
 ActiveAdmin.register Wage do
-	permit_params :preparer_attributes, :amount, :preparer_id
+	permit_params :preparer_attributes, :amount, :pay_date, :preparer_id
 	menu priority: 5
 	filter :preparer, as: :select, collection: Preparer.all.map(&:first_name)
 	filter :amount
@@ -13,7 +13,7 @@ ActiveAdmin.register Wage do
     column :amount do |wage|
     	number_to_currency(wage.amount)
     end
-    column :created_at
+    column :pay_date
     actions
   end
 
@@ -39,6 +39,7 @@ ActiveAdmin.register Wage do
     f.semantic_errors *f.object.errors.keys
 		f.inputs "Wage Info" do
 			f.input :amount
+      f.input :pay_date, as: :datepicker
 		end
 		f.inputs "Preparer Info" do
 			f.input :preparer, as: :select, collection: Preparer.all.map {|prep| [prep.first_name, prep.id]}
