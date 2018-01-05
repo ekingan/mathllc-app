@@ -7,7 +7,7 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :manage, Payment, job_id: user.preparer.jobs
+      can :manage, Payment
       can :manage, User, id: user.id
       can :manage, Client
       can :manage, Job
