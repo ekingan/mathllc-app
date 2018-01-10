@@ -7,7 +7,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel "Jobs to follow up on" do
+        panel "Jobs waiting on more info" do
           ol do
             jobs.where(status: :need_info).map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
@@ -47,7 +47,7 @@ ActiveAdmin.register_page "Dashboard" do
     end
     columns do
       column do
-        panel "Ready Jobs" do
+        panel "Jobs Ready for efile" do
           ol do
             jobs.ready.map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
@@ -90,7 +90,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent Payments" do
           ol do
             #refactor this
-            jobs.paid.limit(35).each do |job|
+            jobs.paid.limit(30).each do |job|
               Payment.where(job_id: job.id).map do |pay|
                 li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - Received on  #{pay.created_at.to_date.strftime("%m/%d/%Y")} ", admin_payment_path(pay))
               end

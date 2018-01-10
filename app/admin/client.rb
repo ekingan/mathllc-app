@@ -6,6 +6,7 @@ ActiveAdmin.register Client do
   menu priority: 2
   config.sort_order = :last_name_asc
 
+  filter :primary_preparer, as: :select, collection: [["Emily", 1], ["Jenna", 2], ["Amanda", 3], ["Brian", 4], ["Debbie", 5]]
   filter :entity_type, as: :select
   filter :company
   filter :first_name
@@ -15,7 +16,6 @@ ActiveAdmin.register Client do
   filter :spouse_last_name
   filter :email
   filter :state
-  filter :primary_preparer, as: :select, collection: proc { Preparer.all }
 
 index do
   column :last_name
@@ -122,7 +122,6 @@ end
   end
 
   def scoped_collection
-     super.includes :preparer, :jobs
-   end
-
+    super.includes :preparer, :jobs
+  end
 end

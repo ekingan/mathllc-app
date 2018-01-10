@@ -11,4 +11,16 @@ class Client < ApplicationRecord
 	def name
 		"#{last_name} #{first_name} // #{company}"
 	end
+
+  def last_name=(s)
+    write_attribute(:last_name, s.to_s.upcase)
+  end
+
+  def first_name=(s)
+    write_attribute(:first_name, s.to_s.upcase)
+  end
+
+  def company=(s)
+    write_attribute(:company, s.to_s.upcase)
+  end
 end
