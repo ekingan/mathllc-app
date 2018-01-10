@@ -6,8 +6,8 @@ ActiveAdmin.register Client do
   menu priority: 2
   config.sort_order = :last_name_asc
 
-  filter :primary_preparer, as: :select, collection: [["Emily", 1], ["Jenna", 2], ["Amanda", 3], ["Brian", 4], ["Debbie", 5]]
-  filter :entity_type, as: :select
+  filter :primary_preparer, as: :select, collection: proc { Preparer.all }
+  filter :entity_type, as: :select, collection: [["Individual", 0], ["Partnership", 1], ["S-Corp", 2], ["C-Corp", 3], ["Non-Profit", 4], ["Trust", 5], ["Estate", 6]]
   filter :company
   filter :first_name
   filter :last_name
