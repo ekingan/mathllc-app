@@ -47,6 +47,26 @@ ActiveAdmin.register_page "Dashboard" do
     end
     columns do
       column do
+        panel "Jobs that need to be scanned" do
+          ol do
+            jobs.not_scanned.map do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
+            end
+          end
+        end
+      end
+      column do
+        panel "Jobs that need to be printed or uploaded" do
+          ol do
+            jobs.not_printed_or_uploaded.each do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
+            end
+          end
+        end
+      end
+    end
+    columns do
+      column do
         panel "Jobs Ready for efile" do
           ol do
             jobs.ready.map do |job|
@@ -86,6 +106,15 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
     columns do
+      column do
+        panel "Rejected Returns" do
+          ol do
+            jobs.rejected.map do |job|
+              li link_to("#{job.client.name} - Rejected", admin_job_path(job))
+            end
+          end
+        end
+      end
       column do
         panel "Recent Payments" do
           ol do

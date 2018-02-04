@@ -12,3 +12,6 @@ This project is a CMS for my accounting company, Math LLC. It allows preparers t
 ## todo
 
 * Create test suite
+
+ToDo:
+Add bill price to payment, only save if they match
