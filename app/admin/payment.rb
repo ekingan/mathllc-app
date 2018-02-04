@@ -7,6 +7,8 @@ ActiveAdmin.register Payment do
 		link_to "New Payment", new_admin_payment_path
 	end
 
+  actions :all, :except => [:edit]
+
 	filter :preparer
 	filter :job_id, as: :select
 	filter :amount
