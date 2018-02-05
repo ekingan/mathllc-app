@@ -14,7 +14,7 @@ class Job < ApplicationRecord
 
   scope :not_scanned, -> { where(scanned: false).where(job_type: nil) }
 
-  scope :not_printed_or_uploaded, -> { where('printed=? AND uploaded=? AND job_type=?', false, false, nil) }
+  scope :not_printed_or_uploaded, -> { where('printed=? AND uploaded=?', false, false).where(job_type: nil) }
 
   def to_param
     "#{id} #{client.last_name}".parameterize
