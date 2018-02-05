@@ -7,18 +7,14 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
-  scope "In Process", default: true do |job|
-    job.where.not(status: :done )
-  end
   scope "Done Jobs" do |job|
     job.done
   end
+
   scope "Ready Jobs" do |job|
     job.ready
   end
-  scope "Jobs Needing Attention" do |job|
-    job.where(status: [:commited, :todo, :in_progress, :need_info, :need_signatures])
-  end
+
   scope "All Jobs" do |job|
     Job.all
   end
@@ -117,11 +113,11 @@ ActiveAdmin.register Job do
     redirect_to admin_jobs_path, :notice => "Marked jobs as done"
   end
 
-  batch_action :finish do |selection|
+  batch_action :rejected do |selection|
     Job.find(selection).each do |job|
-      job.update_attribute(:status, :done)
+      job.update_attribute(:status, :rejected)
     end
-    redirect_to admin_jobs_path, :notice => "Marked jobs as done"
+    redirect_to admin_jobs_path, :notice => "Marked jobs as rejected"
   end
 
   index do

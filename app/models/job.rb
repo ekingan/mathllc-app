@@ -3,7 +3,7 @@ class Job < ApplicationRecord
   belongs_to :preparer
   has_one :payment
   enum fed_form: [:Individual_1040, :S_Corp_1120S, :Partnership_1065, :C_Corp_1120, :Non_Profit_990, :Trust_1041, :Estate_706, :Amendment, :other]
-  enum status: [:commited, :todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :done, :extended, :accepted, :rejected]
+  enum status: [:commited, :todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :done, :extended, :accepted, :rejected, :review]
   enum job_type: [:bookkeeping, :consulting, :referral, :teaching]
 
   scope :unpaid, -> { joins('left outer join payments on payments.job_id = jobs.id').where('payments.job_id IS null OR payments.partial_payment IS true')}
@@ -12,9 +12,9 @@ class Job < ApplicationRecord
 
   scope :not_done, -> { where.not(status: :done) }
 
-  scope :not_scanned, -> { where(scanned: false) }
+  scope :not_scanned, -> { where(scanned: false).where(job_type: nil) }
 
-  scope :not_printed_or_uploaded, -> { where('printed=? AND uploaded=?', false, false) }
+  scope :not_printed_or_uploaded, -> { where('printed=? AND uploaded=? AND job_type=?', false, false, nil) }
 
   def to_param
     "#{id} #{client.last_name}".parameterize

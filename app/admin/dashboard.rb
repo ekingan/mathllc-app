@@ -7,15 +7,6 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column do
-        panel "Jobs waiting on more info" do
-          ol do
-            jobs.where(status: :need_info).map do |job|
-              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
-            end
-          end
-        end
-      end
-      column do
         panel "Jobs Todo" do
           ol do
             jobs.where(status: :todo).reverse.map do |job|
@@ -24,22 +15,31 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
-    end
-    columns do
       column do
-        panel "Jobs needing signatures" do
+        panel "Jobs waiting on more info" do
           ol do
-            jobs.where(status: :need_signatures).reverse.map do |job|
+            jobs.where(status: :need_info).map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
         end
       end
+    end
+    columns do
       column do
         panel "Jobs in progress" do
           ol do
             jobs.where(status: :in_progress).reverse.map do |job|
               li link_to("#{job.client.name} - Updated on #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
+            end
+          end
+        end
+      end
+      column do
+        panel "Jobs for review" do
+          ol do
+            jobs.where(status: :review).reverse.map do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
         end
@@ -67,19 +67,19 @@ ActiveAdmin.register_page "Dashboard" do
     end
     columns do
       column do
-        panel "Jobs Ready for efile" do
+        panel "Jobs needing signatures" do
           ol do
-            jobs.ready.map do |job|
+            jobs.where(status: :need_signatures).reverse.map do |job|
               li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
         end
       end
       column do
-        panel "Unpaid Jobs" do
+        panel "Jobs Ready for efile" do
           ol do
-            jobs.unpaid.filed.each do |job|
-              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job)) unless job.payment
+            jobs.ready.map do |job|
+              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
             end
           end
         end
@@ -115,6 +115,17 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
+      column do
+        panel "Unpaid Jobs" do
+          ol do
+            jobs.unpaid.filed.each do |job|
+              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job)) unless job.payment
+            end
+          end
+        end
+      end
+    end
+    columns do
       column do
         panel "Recent Payments" do
           ol do
