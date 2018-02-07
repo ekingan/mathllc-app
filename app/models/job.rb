@@ -27,9 +27,7 @@ class Job < ApplicationRecord
 
   def fed_accepted!
     self.update_attribute(:ack_fed, Time.now)
-    if self.primary_state == ""
-      set_to_accepted_status
-    end
+    set_to_accepted_status
   end
 
   def state_accepted!
