@@ -36,6 +36,8 @@ class Job < ApplicationRecord
   end
 
   def set_to_accepted_status
-    self.update_attribute(status, :accepted)
+    if self.ack_fed && self.ack_primary_state
+      self.update_attribute(:status, :accepted)
+    end
   end
 end
