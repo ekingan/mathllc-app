@@ -27,17 +27,19 @@ class Job < ApplicationRecord
 
   def fed_accepted!
     self.update_attribute(:ack_fed, Time.now)
-    set_to_accepted_status
+    if self.primary_state == ""
+      set_to_accepted_status
+    end
   end
 
   def state_accepted!
     self.update_attribute(:ack_primary_state, Time.now)
-    set_to_accepted_status
+    if self.ack_fed
+      set_to_accepted_status
+    end
   end
 
   def set_to_accepted_status
-    if self.ack_fed && self.ack_primary_state
-      self.update_attribute(:status, :accepted)
-    end
+    self.update_attribute(:status, :accepted)
   end
 end
