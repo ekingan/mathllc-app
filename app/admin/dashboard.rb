@@ -116,10 +116,10 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column do
-        panel "Unpaid Jobs" do
+        panel "Extended returns that have been accepted" do
           ol do
-            jobs.unpaid.filed.each do |job|
-              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job)) unless job.payment
+            jobs.extended.where('ack_fed is NOT NULL').map do |job|
+              li link_to("#{job.client.name} - Accepted", admin_job_path(job))
             end
           end
         end
@@ -134,6 +134,15 @@ ActiveAdmin.register_page "Dashboard" do
               Payment.where(job_id: job.id).map do |pay|
                 li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - Received on  #{pay.created_at.to_date.strftime("%m/%d/%Y")} ", admin_payment_path(pay))
               end
+            end
+          end
+        end
+      end
+      column do
+        panel "Unpaid Jobs" do
+          ol do
+            jobs.unpaid.filed.each do |job|
+              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job)) unless job.payment
             end
           end
         end

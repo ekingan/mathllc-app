@@ -29,91 +29,98 @@ ActiveAdmin.register Job do
   filter :due_date
   filter :rejected, as: :select
 
-  batch_action :todo do |selection|
+  batch_action :mark_as_todo do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:status, :todo)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs todo"
   end
 
-  batch_action :in_progress do |selection|
+  batch_action :mark_as_in_progress do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:status, :in_progress)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs in progress"
   end
 
-  batch_action :need_info do |selection|
+  batch_action :mark_as_need_info do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:status, :need_info)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as needing info"
   end
 
-  batch_action :need_signatures do |selection|
+  batch_action :mark_as_need_signatures do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:status, :need_signatures)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as needing signatures"
   end
 
-  batch_action :upload do |selection|
+  batch_action :mark_as_uploaded do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:uploaded, true)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as uploaded"
   end
 
-  batch_action :scan do |selection|
+  batch_action :mark_as_scanned do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:scanned, true)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as scanned"
   end
 
-  batch_action :print do |selection|
+  batch_action :mark_as_printed do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:printed, true)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as printed"
   end
 
-  batch_action :ready do |selection|
+  batch_action :mark_as_ready do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:status, :ready)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as ready"
   end
 
-  batch_action :file do |selection|
+  batch_action :mark_as_filed do |selection|
     Job.find(selection).each do |job|
       job.file!
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as filed"
   end
 
-  batch_action :ack_fed do |selection|
+  batch_action :mark_as_federally_accepted do |selection|
     Job.find(selection).each do |job|
       job.fed_accepted!
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as federally accepted"
   end
 
-  batch_action :ack_primary_state do |selection|
+  batch_action :mark_as_state_selected do |selection|
     Job.find(selection).each do |job|
       job.state_accepted!
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as federally accepted"
   end
 
-  batch_action :finish do |selection|
+  batch_action :mark_as_finished do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:paid, true)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as done"
   end
 
-  batch_action :rejected do |selection|
+  batch_action :mark_as_extended do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:status, :extended)
+    end
+    redirect_to admin_jobs_path, :notice => "Marked jobs as rejected"
+  end
+
+  batch_action :mark_as_rejected do |selection|
     Job.find(selection).each do |job|
       job.update_attribute(:status, :rejected)
     end
@@ -136,6 +143,13 @@ ActiveAdmin.register Job do
     column :uploaded
     column "Filed" do |job|
       if job.filed
+        status_tag "Yes"
+      else
+        status_tag "No"
+      end
+    end
+    column "Accepted" do |job|
+      if job.ack_fed
         status_tag "Yes"
       else
         status_tag "No"

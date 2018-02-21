@@ -21,19 +21,19 @@ class Job < ApplicationRecord
   end
 
   def file!
-    self.update_attribute(:status, :filed)
+    self.update_attribute(:status, :filed) unless self.status == 'extended'
     self.update_attribute(:filed, Time.now)
   end
 
   def fed_accepted!
     self.update_attribute(:ack_fed, Time.now)
-    set_to_accepted_status
+    set_to_accepted_status unless self.status == 'extended'
   end
 
   def state_accepted!
     self.update_attribute(:ack_primary_state, Time.now)
     if self.ack_fed
-      set_to_accepted_status
+      set_to_accepted_status unless self.status == 'extended'
     end
   end
 
