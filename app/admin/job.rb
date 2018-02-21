@@ -106,9 +106,9 @@ ActiveAdmin.register Job do
     redirect_to admin_jobs_path, :notice => "Marked jobs as federally accepted"
   end
 
-  batch_action :mark_as_finished do |selection|
+  batch_action :mark_as_done do |selection|
     Job.find(selection).each do |job|
-      job.update_attribute(:paid, true)
+      job.update_attribute(:status, :done)
     end
     redirect_to admin_jobs_path, :notice => "Marked jobs as done"
   end
