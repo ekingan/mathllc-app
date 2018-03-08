@@ -130,7 +130,9 @@ ActiveAdmin.register Job do
   index do
     selectable_column
     column :id
-    column :client
+    column :client, sortable: :status do |job|
+      job.client.last_name
+    end
     column :preparer
     column "Job Type" do |job|
       job.fed_form || job.job_type
