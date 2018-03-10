@@ -12,9 +12,9 @@ class Job < ApplicationRecord
 
   scope :not_done, -> { where.not(status: :done) }
 
-  scope :not_scanned, -> { where(scanned: false).where(job_type: nil) }
+  scope :not_scanned, -> { where(scanned: false).where(job_type: nil).where(status: [:todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :review, :accepted]) }
 
-  scope :not_printed_or_uploaded, -> { where('printed=? AND uploaded=?', false, false).where(job_type: nil) }
+  scope :not_printed_or_uploaded, -> { where('printed=? AND uploaded=?', false, false).where(job_type: nil).where(status: [:todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :review, :accepted]) }
 
   scope :unbilled, -> { where('bill=?', 0.0) }
 
