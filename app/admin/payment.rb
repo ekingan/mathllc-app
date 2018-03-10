@@ -63,7 +63,7 @@ ActiveAdmin.register Payment do
 	form do |f|
     f.semantic_errors *f.object.errors.keys
 		f.inputs "Payment Info" do
-			f.input :job, as: :select, collection: Job.unpaid.order(id: :desc).map{ |job| ["#{job.client.last_name}-#{job.client.first_name}-$#{job.bill}", job.id] }
+			f.input :job, as: :select, collection: Job.unpaid.billed.order(updated_at: :desc).map{ |job| ["#{job.client.last_name}-#{job.client.first_name}-$#{job.bill}", job.id] }
 			f.input :amount
 			f.input :payment_type
 			f.input :check_number

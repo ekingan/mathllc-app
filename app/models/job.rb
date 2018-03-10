@@ -16,6 +16,10 @@ class Job < ApplicationRecord
 
   scope :not_printed_or_uploaded, -> { where('printed=? AND uploaded=?', false, false).where(job_type: nil) }
 
+  scope :unbilled, -> { where('bill=?', 0.0) }
+
+  scope :billed, -> { where('bill!=?', 0.0) }
+
   def to_param
     "#{id} #{client.last_name}".parameterize
   end
