@@ -141,7 +141,6 @@ ActiveAdmin.register Job do
     column :printed
     column :scanned
     column :uploaded
-    column :final_efile_check
     column "Filed" do |job|
       if job.filed
         status_tag "Yes"
@@ -159,6 +158,7 @@ ActiveAdmin.register Job do
 		column "Paid", sortable: :paid do |job|
 			status_tag job.payment ? "yes" : 'no'
 		end
+    column :final_efile_check
     actions
   end
 
