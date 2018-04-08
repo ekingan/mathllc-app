@@ -127,6 +127,13 @@ ActiveAdmin.register Job do
     redirect_to admin_jobs_path, :notice => "Marked jobs as rejected"
   end
 
+  batch_action :confirm_efile do |selection|
+    Job.find(selection).each do |job|
+      job.update_attribute(:final_efile_check, true)
+    end
+    redirect_to admin_jobs_path, :notice => "Confirmed Jobs Efiled"
+  end
+
   index do
     selectable_column
     column :id
