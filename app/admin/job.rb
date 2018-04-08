@@ -1,6 +1,6 @@
 ActiveAdmin.register Job do
   permit_params :fed_form, :primary_state, :second_state, :third_state, :tmse, :portland, :status,
-              :printed, :scanned, :uploaded, :filed, :ack_fed, :ack_primary_state,
+              :printed, :scanned, :uploaded, :final_efile_check, :filed, :ack_fed, :ack_primary_state,
               :ack_second_state, :ack_third_state, :due_date, :rejected, :job_type,
               :notes, :bill, :preparer, :client, :client_id, :preparer_id, :payment_id, preparer_attributes: [:first_name, :id],
               client_attributes: [:last_name, :id], payment_attributes: [:amount, :check_number, :payment_type]
@@ -99,11 +99,11 @@ ActiveAdmin.register Job do
     redirect_to admin_jobs_path, :notice => "Marked jobs as federally accepted"
   end
 
-  batch_action :mark_as_state_selected do |selection|
+  batch_action :mark_as_state_accepted do |selection|
     Job.find(selection).each do |job|
       job.state_accepted!
     end
-    redirect_to admin_jobs_path, :notice => "Marked jobs as federally accepted"
+    redirect_to admin_jobs_path, :notice => "Marked jobs as state accepted"
   end
 
   batch_action :mark_as_done do |selection|
@@ -117,7 +117,7 @@ ActiveAdmin.register Job do
     Job.find(selection).each do |job|
       job.update_attribute(:status, :extended)
     end
-    redirect_to admin_jobs_path, :notice => "Marked jobs as rejected"
+    redirect_to admin_jobs_path, :notice => "Marked jobs as extended"
   end
 
   batch_action :mark_as_rejected do |selection|
@@ -141,6 +141,7 @@ ActiveAdmin.register Job do
     column :printed
     column :scanned
     column :uploaded
+    column :final_efile_check
     column "Filed" do |job|
       if job.filed
         status_tag "Yes"
@@ -192,6 +193,7 @@ ActiveAdmin.register Job do
         end
         panel "Filing Details" do
           attributes_table_for job do
+            row :final_efile_check
             row :filed
             row :ack_fed
             row :ack_primary_state
@@ -244,6 +246,7 @@ ActiveAdmin.register Job do
       f.input :printed
       f.input :scanned
       f.input :uploaded
+      f.input :final_efile_check
       f.input :due_date, as: :datepicker
       f.input :bill
     end

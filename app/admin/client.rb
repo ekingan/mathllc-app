@@ -2,7 +2,7 @@ ActiveAdmin.register Client do
   permit_params :first_name, :last_name, :company, :date_of_birth, :email, :phone, :street, :city,
                 :state, :zip_code, :occupation, :entity_type, :tax_year_ends, :filing_status,
                 :number_of_dependents, :spouse_first_name, :spouse_last_name, :spouse_date_of_birth,
-                :spouse_phone, :spouse_email, :spouse_occupation, :notes, :primary_preparer_id, :preparer_attributes
+                :spouse_phone, :spouse_email, :spouse_occupation, :notes, :primary_preparer_id, :preparer_attributes, :discontinue
   menu priority: 2
   config.sort_order = :last_name_asc
 
@@ -16,6 +16,7 @@ ActiveAdmin.register Client do
   filter :spouse_last_name
   filter :email
   filter :state
+  filter :discontinue
 
 index do
   column :last_name
@@ -43,6 +44,7 @@ show do
           row :email
           row :phone
           row :occupation
+          row :discontinue
         end
       end
       panel "Filing Info" do
@@ -93,6 +95,7 @@ end
       f.input :tax_id, label: "Tax ID"
       f.input :primary_preparer_id, as: :select, collection: [["Emily", 1], ["Jenna", 2], ["Amanda", 3], ["Brian", 4], ["Debbie", 5], ["Karen", 6]]
       f.input :company
+      f.input :discontinue
       f.input :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
       f.input :email
       f.input :phone
