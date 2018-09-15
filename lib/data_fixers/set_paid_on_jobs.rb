@@ -9,7 +9,7 @@ module DataFixers
       @jobs.find_each do |job|
         payments = job.payments.sum(&:amount)
         total = job.bill
-        job.update_attributes(paid_in_full: true) if payments == total
+        job.update_attributes(paid_in_full: true) if (payments == total) && (payments != 0)
       end
     end
   end
