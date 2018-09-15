@@ -20,8 +20,6 @@ class Job < ApplicationRecord
 
   scope :billed, -> { where('bill!=?', 0.0) }
 
-  scope :balance_due, -> { select('sum(payments.amount) as total_payments, jobs.id').joins('left outer join payments on payments.job_id = jobs.id').group('jobs.id').having('sum(payments.amount) < jobs.bill') }
-
   def to_param
     "#{id} #{client.last_name}".parameterize
   end
