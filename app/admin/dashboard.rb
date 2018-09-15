@@ -142,7 +142,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Unpaid Jobs" do
           ol do
             jobs.unpaid.where(status: [:filed, :accepted]).each do |job|
-              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job)) unless job.payment
+              li link_to("#{job.client.name} - #{number_to_currency(job.bill)}", admin_job_path(job))
             end
           end
         end

@@ -2,10 +2,10 @@ module DataFixers
   class SetPaidOnJobs
 
     def initialize
-      @jobs = Jobs.all
+      @jobs = Job.all
     end
 
-    def payments
+    def set
       @jobs.find_each do |job|
         payments = job.payments.sum(&:amount)
         total = job.bill

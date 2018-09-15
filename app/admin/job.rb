@@ -163,7 +163,7 @@ ActiveAdmin.register Job do
       end
     end
 		column "Paid", sortable: :paid do |job|
-			status_tag job.payment ? "yes" : 'no'
+			status_tag job.paid_in_full ? "yes" : 'no'
 		end
     column :final_efile_check
     actions

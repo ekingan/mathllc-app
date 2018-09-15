@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408202258) do
+ActiveRecord::Schema.define(version: 20180914215543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20180408202258) do
     t.integer "job_type"
     t.float "bill", default: 0.0
     t.boolean "final_efile_check", default: false
+    t.boolean "paid_in_full", default: false, null: false
     t.index ["client_id"], name: "index_jobs_on_client_id"
     t.index ["preparer_id"], name: "index_jobs_on_preparer_id"
   end
