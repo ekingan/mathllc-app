@@ -191,8 +191,8 @@ ActiveAdmin.register Job do
             row "Bill Amount" do
               number_to_currency(job.bill)
             end
-            row "Payment Received" do
-              number_to_currency(job.payment.amount) if job.payment
+            row "Payments Received" do
+              job.payments.map { |payment| number_to_currency(payment.amount) }.join("<br />").html_safe
             end
             row :job_type
             row :due_date

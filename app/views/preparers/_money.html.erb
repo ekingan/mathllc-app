@@ -31,12 +31,14 @@
 	</thead>
 	<tbody>
 		<% @preparer.jobs.sort_by(&:updated_at).reverse.each do |job| %>
-			<% if job.payment %>
+			<% if job.payments %>
 		<tr>
 			<th><%= job.client.last_name %></th>
 			<th><%= job.id %></th>
-			<th><%= number_to_currency(job.payment.amount) %></th>
-			<th><%= job.payment.created_at.strftime('%v') %></th>
+        <% job.payments.each do |payment| %>
+			<th><%= number_to_currency(payment.amount) %></th>
+			<th><%= payment.created_at.strftime('%v') %></th>
+        <% end %>
 		</tr>
 			<% end %>
 		<% end %>
