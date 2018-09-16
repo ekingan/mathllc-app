@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+ruby '2.4.1'
 gem 'rails', '~> 5.1.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -24,6 +24,9 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 gem 'active_skin'
+
+gem 'webpacker'
+gem 'react-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
