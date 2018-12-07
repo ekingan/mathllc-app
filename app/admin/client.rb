@@ -18,7 +18,15 @@ ActiveAdmin.register Client do
   filter :state
   filter :discontinue
 
+  batch_action :discontinue_client do |selected|
+    Client.find(selected).each do |c|
+      c.update_attribute(:discontinue, true)
+    end
+    redirect_to admin_clients_path, :notice => "Discontinued clients"
+  end
+
 index do
+  selectable_column
   column :last_name
   column :first_name
   column :company
