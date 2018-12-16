@@ -6,14 +6,8 @@ ActiveAdmin.register Client do
   menu priority: 2
   config.sort_order = :last_name_asc
 
-  scope "Current Clients", default: true do |client|
-    Client.where.not(discontinue: :true)
-  end
-
-  scope "All Clients" do |client|
-    Client.all
-  end
-
+  scope :active, default: true 
+  scope :all
   scope "Discontinued Clients" do |client|
     Client.where(discontinue: :true)
   end
