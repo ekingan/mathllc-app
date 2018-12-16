@@ -8,6 +8,8 @@ class Client < ApplicationRecord
 	validates :tax_id, length: { is: 4, :allow_nil => true}
   validates_uniqueness_of :last_name, :scope => :first_name
 
+  scope :active, -> { where.not(discontinue: :true) }
+
 	def name
 		"#{last_name} #{first_name} // #{company}"
 	end
