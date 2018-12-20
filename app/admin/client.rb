@@ -8,9 +8,7 @@ ActiveAdmin.register Client do
 
   scope :active, default: true 
   scope :all
-  scope "Discontinued Clients" do |client|
-    Client.where(discontinue: :true)
-  end
+  scope :inactive
 
   filter :primary_preparer, as: :select, collection: proc { Preparer.all }
   filter :entity_type, as: :select, collection: [["Individual", 0], ["Partnership", 1], ["S-Corp", 2], ["C-Corp", 3], ["Non-Profit", 4], ["Trust", 5], ["Estate", 6]]
