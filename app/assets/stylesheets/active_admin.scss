@@ -35,3 +35,7 @@ $panelHeaderBck: #002744;
   &.rejected, &.need_info, &.need_signatures { background: #d45f53; }
 
 }
+
+body.active_admin {
+  @import "select2";
+}
