@@ -18,6 +18,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'activeadmin'
+gem 'activeadmin_addons'
 
 gem 'devise'
 gem 'cancan' # or cancancan
