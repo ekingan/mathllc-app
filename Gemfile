@@ -16,7 +16,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 
 gem 'activeadmin', '1.4.3'
-gem 'react_on_rails'
+gem "react_on_rails", "11.0.0"
+gem "webpacker", "~> 3"
+gem 'mini_racer', platforms: :ruby
 
 gem 'devise'
 gem 'cancan' # or cancancan
@@ -37,3 +39,5 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby
