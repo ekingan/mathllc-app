@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'activeadmin'
 gem 'jquery-rails'
-gem 'select2-rails'
+gem 'select2-rails-latest', '~> 4.0', '>= 4.0.5'
 gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 
 gem 'devise'
