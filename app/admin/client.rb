@@ -10,7 +10,7 @@ ActiveAdmin.register Client do
   scope :all
   scope :inactive
 
-  filter :primary_preparer_id, as: :select, multiple: true, collection: Preparer.all
+  filter :primary_preparer_id, as: :select, collection: Preparer.all
   filter :entity_type, as: :select, collection: [["Individual", 0], ["Partnership", 1], ["S-Corp", 2], ["C-Corp", 3], ["Non-Profit", 4], ["Trust", 5], ["Estate", 6]]
   filter :company
   filter :first_name
