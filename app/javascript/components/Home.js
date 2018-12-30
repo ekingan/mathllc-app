@@ -1,17 +1,24 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Header from "./Header"
+import Nav from "./Nav"
+import Intro from "./Intro"
+import Footer from "./Footer"
+
 class Home extends React.Component {
   render () {
     return (
-      <React.Fragment>
-        Greeting: {this.props.greeting}
-        Other: {this.props.greeting}
-      </React.Fragment>
+      <div className="home-container">
+        <Header logo={this.props.logo}/>
+        <Nav />
+        <Intro />
+        <Footer />
+      </div>
     );
   }
 }
 
 Home.propTypes = {
-  greeting: PropTypes.node
+  logo: PropTypes.node
 };
 export default Home

@@ -1,0 +1,25 @@
+.intro {
+  text-align: center;
+  padding: 40px;
+
+  .text {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 2em; 
+    font-weight: bold;
+    max-width: 650px;
+    padding: 50px 25px 25px 25px;
+  }
+
+  .background {
+    background: url(asset_path('sauvies.jpeg'));
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 600px;
+    max-width: 800px;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.75;
+  }
+}
