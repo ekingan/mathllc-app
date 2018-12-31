@@ -1,0 +1,11 @@
+<%= javascript_pack_tag 'application' %>
+<%= react_component(
+  "About", { 
+    logo: asset_url('logo.png'),
+    Kingan: asset_url('kingan.jpeg'),
+    Goldin: asset_url('goldin.png'),
+    Wiles: asset_url('wiles.jpeg'),
+    Frank: asset_url('frank.jpg'),
+    preparers: @preparers.as_json
+  }
+) %>

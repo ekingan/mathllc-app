@@ -1,6 +1,6 @@
 ActiveAdmin.register Preparer do
   permit_params :first_name, :last_name, :username, :user_id, :email, :phone, :street, :city,
-                :state, :zip_code, :date_of_birth, :role, :license_number, :job_title
+                :state, :zip_code, :date_of_birth, :role, :license_number, :job_title, :bio, :image_url
   menu priority: 1
 
   filter :last_name
@@ -41,6 +41,8 @@ ActiveAdmin.register Preparer do
     f.inputs "Professional info" do
       f.input :license_number
       f.input :job_title
+      f.input :image_url
+      f.input :bio
     end
     f.actions
   end

@@ -5,7 +5,7 @@ class Nav extends React.Component {
     return (
       <ul className="nav">
         <li className="page-divider"></li>
-        <li> <a> About Us </a> </li>
+        <li> <a href="/about"> About Us </a> </li>
         <li> <a> Services </a>  </li>
         <li> <a> New Clients </a>  </li>
         <li> <a> Returning Clients </a>  </li>
