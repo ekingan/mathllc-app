@@ -52,7 +52,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @preparer.jobs.paid.sort_by(&:updated_at).reverse.each do |job| %>
+		<% @preparer.jobs.paid.sort_by(&:updated_at).reverse.first(20).each do |job| %>
 			<% if job.payments %>
 		<tr>
 			<th><%= job.client.last_name %></th>
