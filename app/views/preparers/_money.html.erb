@@ -1,22 +1,44 @@
 
-<h5>Stats</h5>
+<h5>Current Year</h5>
 <table>
 	<thead>
 		<tr>
-			<th>Total Payments YTD</th>
+			<th>Balance from Previous Year</th>
+			<th>Gross Payments Current YTD</th>
 			<th>Preparer Portion</th>
-			<th>Wages YTD</th>
-			<th>Balance</th>
+			<th>Gross Wages Current YTD</th>
+			<th>Balance Owed to Preparer</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th><%= number_to_currency(@total_payments) %></th>
-			<th><%= number_to_currency(@total_payments/2) %></th>
-			<th><%= number_to_currency(@total_wages) %></th>
+			<th><%= number_to_currency(@preparer.balance(2018)) %></th>
+			<th><%= number_to_currency(@preparer.total_payments_by_year(2019)) %></th>
+			<th><%= number_to_currency(@preparer.total_payments_by_year(2019)/2) %></th>
+			<th><%= number_to_currency(@preparer.total_wages_by_year(2019)) %></th>
 			<th><%= number_to_currency(@balance) %></th>
 		</tr>
-
+	</tbody>
+</table>
+<h5>Previous Year</h5>
+<table>
+	<thead>
+		<tr>
+			<th>Balance from Previous Year</th>
+			<th>Gross Payments 2018</th>
+			<th>Preparer Portion 2018</th>
+			<th>Gross Wages 2018</th>
+			<th>Remaining Balance Owed to Preparer 2018</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th><%= number_to_currency(@preparer.balance(2017)) %></th>
+			<th><%= number_to_currency(@preparer.total_payments_by_year(2018)) %></th>
+			<th><%= number_to_currency(@preparer.total_payments_by_year(2018)/2) %></th>
+			<th><%= number_to_currency(@preparer.total_wages_by_year(2018)) %></th>
+			<th><%= number_to_currency(@preparer.balance(2018)) %></th>
+		</tr>
 	</tbody>
 </table>
 <h5>Recent Payments</h5>
@@ -30,7 +52,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @preparer.jobs.paid.sort_by(&:updated_at).reverse.each do |job| %>
+		<% @preparer.jobs.paid.sort_by(&:updated_at).reverse.first(20).each do |job| %>
 			<% if job.payments %>
 		<tr>
 			<th><%= job.client.last_name %></th>

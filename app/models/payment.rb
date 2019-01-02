@@ -5,6 +5,8 @@ class Payment < ApplicationRecord
   validate :payment_amount
   after_validation :update_paid_in_full
 
+  scope :created_in, ->(year) { where('extract(year from created_at) = ?', year ) }
+
   def sum_of_payments
     payments = job.payments.sum(&:amount)
   end
