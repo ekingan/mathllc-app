@@ -18,6 +18,7 @@ class About extends React.Component {
         <Nav />
         <GeneralAbout />
         {preparerProfiles}
+        <div style={{paddingTop: '50px'}}></div>
         <Footer />
       </div>
     );

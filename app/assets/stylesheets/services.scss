@@ -1,3 +1,18 @@
-// Place all the styles related to the Services controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.services {
+
+  .heading {
+    background: white;
+    padding: 50px 50px 10px 150px;
+    letter-spacing: 2px;
+  }
+  
+  .item {
+    padding-left: 150px;
+    letter-spacing: 0;
+  }
+
+  .sub-item {
+    padding-left: 200px;
+    letter-spacing: 0;
+  }
+}

@@ -1,13 +1,13 @@
 import React from "react"
 
-class Section extends React.Component {
+class Note extends React.Component {
   render () {
     return (
-      <div className="heading">
+      <div className="note">
         {this.props.text}
       </div>
     );
   }
 }
 
-export default Section
+export default Note

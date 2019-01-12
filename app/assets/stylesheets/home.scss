@@ -1,10 +1,9 @@
 body {
   background-color: #FFF;
-  color: #323537;
-  font-family: "Varela Round";
+  color: #999;
+  font-family: Arial, sans-serif;
   font-size: 13px;
   line-height: 1.8em;
-  text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 2px;
   font-weight: 400;
@@ -22,3 +21,31 @@ hr {
   background: #999;
   opacity: 0.4;
 }
+
+.blue {
+  color: #00b8e6;
+  font-weight: bold;
+}
+
+.textbox {
+  padding: 50px 120px 20px 120px;
+}
+
+.link {
+  padding: 5px 150px 5px 150px;
+
+  a {
+    color: #00b8e6;
+  }
+
+  a:visited {
+    color: #00b8e6;
+  }
+}
+
+.note {
+  padding: 40px 100px 60px 100px;
+  font-style: italic;
+  letter-spacing: 0;
+}
+

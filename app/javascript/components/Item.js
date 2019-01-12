@@ -4,7 +4,7 @@ class Item extends React.Component {
   render () {
     return (
       <div className="item">
-        {this.props.text}
+        <span className="blue">+ </span>{this.props.text}
       </div>
     );
   }

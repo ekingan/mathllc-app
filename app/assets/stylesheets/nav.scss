@@ -1,12 +1,14 @@
 .nav{
   border:1px solid #ccc;
   border-width:1px 0;
+  text-transform: uppercase;
   list-style:none;
   margin:0;
   padding:0;
-  line-height: 1.8em;
   width: 100%;
   text-align:center;
+  line-height: 23px;
+  letter-spacing: 2px;
 
   li {
     display:inline;
@@ -19,6 +21,10 @@
   }
 
   li a:hover {
-    color: #6bd0f4;
+    color: #00ccff;;
+  }
+
+  li a:active {
+    color: #007a99;
   }
 }
