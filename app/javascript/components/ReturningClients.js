@@ -4,6 +4,9 @@ import Header from "./Header"
 import Nav from "./Nav"
 import Note from "./Note"
 import Section from "./Section"
+import Item from "./Item"
+import SubItem from "./SubItem"
+import Link from "./Link"
 import Footer from "./Footer"
 
 class ReturningClients extends React.Component {
@@ -17,6 +20,9 @@ class ReturningClients extends React.Component {
             "For individual taxpayers interested in filing by the April 18th deadline, we require all your tax materials no later than March 20th. For partnerships and s-corporations, we will need your tax materials no later than Feb 20th in order to meet the March 15th deadline." 
             } />
           <Section text={"For our returning clients, here are a few links to help you get started:"} />
+          <Section text={"Step #1"} />
+          <a className="link" href="" download><Item text={"Fill out the TAX ORGANIZER:"}/></a>
+          <SubItem text={"All clients will have to complete this organizer, including the engagement letter,  in order for us to begin working on your taxes! If we are preparing a return for your small business and you use Quickbooks or other accounting software, please provide us with a back-up version of your Quickbooks, access to it online, or financial statements."}/>
           <Footer />
         </div>
       </div>
