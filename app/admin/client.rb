@@ -61,6 +61,9 @@ show do
       end
       panel "Filing Info" do
         attributes_table_for client do
+          row :primary_preparer_id, label: "Primary Preparer" do |c|
+            Preparer.find_by_id(c.primary_preparer_id).first_name
+          end
           row :entity_type
           row :company
           row :tax_id, label: "Tax ID"
