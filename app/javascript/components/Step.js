@@ -9,7 +9,7 @@ class Step extends React.Component {
           { plus && <span className="blue">+ </span> } <a href={link}>{text}</a>
         </div>
         <div className="details">
-    { plus && <span className="blue">+</span>} {instructions}
+        { plus && <span className="blue">+</span>} {instructions}
         </div>
       </div>
     );
