@@ -18,4 +18,7 @@ class HomeController < ApplicationController
     @preparers
   end
 
+  def dates
+  end
+
 end

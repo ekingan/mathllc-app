@@ -6,7 +6,7 @@ import TextBox from "./TextBox"
 import Link from "./Link"
 import Footer from "./Footer"
 
-class Home extends React.Component {
+class NewClients extends React.Component {
   render () {
     return (
       <div className="home-container">
@@ -28,4 +28,4 @@ class Home extends React.Component {
 NewClients.propTypes = {
   logo: PropTypes.node
 };
-export default Home
+export default NewClients
