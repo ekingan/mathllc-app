@@ -2715,7 +2715,7 @@ body.active_admin {
 /* line 28, /Users/ekingan/.rvm/gems/ruby-2.3.0/gems/active_skin-0.0.12/app/assets/stylesheets/active_skin.sass */
 #header h1.site_title {
   background-color: #fff;
-  background: url("MATHLOGO.LONG.png") no-repeat 0 0;
+  background: url("MATHLOGOLONG.png") no-repeat 0 0;
   padding-left: 130px;
   color: #1e2a33;
   text-indent: -999999px;
