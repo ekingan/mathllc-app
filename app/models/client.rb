@@ -10,6 +10,7 @@ class Client < ApplicationRecord
 
   scope :active, -> { where.not(discontinue: :true) }
   scope :inactive, -> { where(discontinue: :true) }
+  # scope :mia, -> { joins('left outer join jobs on jobs.client_id = client.id').where('jobs.client_id IS NULL') }
 
 	def name
 		"#{last_name} #{first_name} // #{company}"

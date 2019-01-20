@@ -20,6 +20,8 @@ ActiveAdmin.register Preparer do
       row :first_name
       row :last_name
       row :email
+      row :bio
+      row :image_url
       render partial: 'preparers/money', locals: { preparer: preparer, total_payments: @total_payments }
     end
   end

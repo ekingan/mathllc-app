@@ -15,7 +15,7 @@ class ReturningClients extends React.Component {
           <Header logo={this.props.logo}/>
           <Nav />
           <Note text={
-            "For individual taxpayers interested in filing by the April 18th deadline, we require all your tax materials no later than March 20th. For partnerships and s-corporations, we will need your tax materials no later than Feb 20th in order to meet the March 15th deadline." 
+            "For individual taxpayers interested in filing by the April 15th deadline, we require all your tax materials no later than March 20th. For partnerships and s-corporations, we will need your tax materials no later than Feb 20th in order to meet the March 15th deadline." 
             } />
           <Section text={"For our returning clients, here are a few links to help you get started:"} />
           <div className="step-header">Step #1</div>
