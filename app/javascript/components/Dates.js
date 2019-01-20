@@ -89,9 +89,7 @@ class Dates extends React.Component {
             <a href="https://www.irs.gov/refunds" target="_blank" >Where's my refund? </a> - IRS website with info on your tax refund
           </div>
 
-          <div className="title" style={{paddingTop: '20px'}}>
-            <a href="https://www.macrumors.com/how-to/digitally-sign-a-pdf-using-preview-on-mac/" target="_blank" >How to sign your tax return on your computer. </a>
-          </div>
+          <SimpleLink link={"https://www.macrumors.com/how-to/digitally-sign-a-pdf-using-preview-on-mac/"} text={"How to sign your tax return on your computer"} />
 
           <div className="title" style={{paddingTop: '20px'}}> 
             <span>What if you get a letter from the IRS or other tax bureau?</span>

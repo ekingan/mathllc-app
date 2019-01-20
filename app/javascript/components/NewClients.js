@@ -18,6 +18,7 @@ class NewClients extends React.Component {
         <Link text={"Inclusion Tax Services"} link={"https://www.inclusiontaxservices.com/"}/>
         <Link text={"Artemis Tax"} link={"http://www.artemistax.com"}/>
         <Link text={"Marisa Barto"} link={"http://thetaxstrategistnw.com/"}/>
+        <Link text={"Bridge City Tax, LLC"} link={"https://bridgecitytax.com"} />
         <div style={{paddingTop: '50px'}}></div>
         <Footer />
       </div>

@@ -21,4 +21,7 @@ class HomeController < ApplicationController
   def dates
   end
 
+  def resources
+  end
+
 end

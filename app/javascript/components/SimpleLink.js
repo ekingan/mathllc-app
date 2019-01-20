@@ -5,7 +5,7 @@ class SimpleLink extends React.Component {
     const { text, link } = this.props
     return (
       <div className="link">
-        <a href={link}>{text}</a>
+        <a href={link} target="_blank">{text}</a>
       </div>
     );
   }
