@@ -1,0 +1,51 @@
+body {
+  background-color: #FFF;
+  color: #999;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.8em;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.home-container {
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+hr { 
+  background: #999;
+  opacity: 0.4;
+}
+
+.blue {
+  color: #00b8e6;
+  font-weight: bold;
+}
+
+.textbox {
+  padding: 50px 120px 20px 120px;
+}
+
+.link {
+  padding: 5px 150px 5px 150px;
+
+  a {
+    color: #00b8e6;
+  }
+
+  a:visited {
+    color: #00b8e6;
+  }
+}
+
+.note {
+  padding: 40px 40px 60px 40px;
+  font-style: italic;
+  letter-spacing: 0;
+}
+

@@ -16,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 
 gem 'activeadmin', '1.4.3'
+gem 'webpacker'
+gem 'react-rails'
 
 gem 'devise'
 gem 'cancan' # or cancancan

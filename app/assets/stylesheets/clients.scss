@@ -1,0 +1,37 @@
+.returning-clients {
+
+  .note {
+    padding: 40px;
+  }
+
+  .heading {
+    background: white;
+    padding: 10px 50px 10px 100px;
+    letter-spacing: 2px;
+  }
+
+  .step-header {
+    padding-left: 100px;
+    padding-right: 40px;
+  }
+
+  .title {
+    padding-left: 100px;
+    padding-right: 40px;
+
+    a {
+      color: #00b8e6;
+    }
+  
+    a:visited {
+      color: #00b8e6;
+    }
+  }
+
+  .details {
+    padding-left: 150px;
+    padding-right: 40px;
+    letter-spacing: 0;
+
+  }
+}

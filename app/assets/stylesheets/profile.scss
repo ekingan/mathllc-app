@@ -1,0 +1,29 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+
+  .right {
+    justify-content: flex-end;
+    margin: auto;
+  }
+  
+  .left {
+    float: left;
+    text-align: left;
+    justify-content: flex-start;
+    margin: auto;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .bio {
+    max-width: 600px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  img {
+    padding: 4px;
+  }
+}

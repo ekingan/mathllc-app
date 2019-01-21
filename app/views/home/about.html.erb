@@ -1,0 +1,7 @@
+<%= javascript_pack_tag 'application' %>
+<%= react_component(
+  "About", { 
+    logo: asset_url('logo.png'),
+    preparers: @preparers.as_json
+  }
+) %>
