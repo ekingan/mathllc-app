@@ -1,5 +1,4 @@
 import React from "react"
-import TodoList from './TodoList'
 import axios from 'axios'
 
 class TodoContainer extends React.Component {
@@ -17,24 +16,33 @@ class TodoContainer extends React.Component {
 
   createTodo = (e) => {
     if (e.key === 'Enter') {
-      const newTodos = this.state.todos.slice()
-      newTodos[0] = { title: e.target.value }
-      console.log(newTodos)
       axios.post('/admin/todos', {todo: {title: e.target.value}})
       .then(response => {
-        console.log(response)
         this.setState({
-          todos: newTodos,
+          todos: [ ...this.state.todos, response.data],
           inputValue: ''
         })
-        console.log(this.state)
       })
       .catch(error => console.log(error))      
     }    
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({inputValue: e.target.value});
+  }
+
+  updateTodo = (e, id) => {
+    axios.put(`/admin/todos/${id}`, {todo: {done: e.target.checked}})
+      .then(response => {
+        const todos = this.state.todos.splice()
+        debugger
+        const todoIndex = todos.findIndex(x => x.id === response.data.id)
+        todos[todoIndex] = response.data
+        this.setState({
+          todos: todos
+        })
+      })
+      .catch(error => console.log(error))   
   }
 
   render () {
@@ -49,7 +57,17 @@ class TodoContainer extends React.Component {
         </div>  	    
         <div className="listWrapper">
           <ul className="taskList">
-            <TodoList />
+            {this.state.todos.map((todo) => {
+		          return(
+                <li className="task" todo={todo} key={todo.id}>
+                  <input className="taskCheckbox" type="checkbox" 
+                    checked={todo.done}
+                    onChange={ e => this.updateTodo(e, todo.id)} />              
+                  <label className="taskLabel">{todo.title}</label>
+                  <span className="deleteTaskBtn">x</span>
+                </li>
+		          )       
+		         })} 	    
           </ul>
         </div>
       </div>    

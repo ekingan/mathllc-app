@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     scope 'admin/' do
       get '/todos', to: 'todos#index'
       post '/todos', to: 'todos#create'
+      put '/todos/:id', to: 'todos#update'
     end
   end
   
