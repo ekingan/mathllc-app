@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   get '/returning-clients', to: 'home#returning_clients'
   get '/dates', to: 'home#dates'
   get '/resources', to: 'home#resources'
+
+  authenticate :user do
+    scope 'admin/' do
+      get '/todos', to: 'todos#index'
+      post '/todos', to: 'todos#create'
+    end
+  end
+  
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 end
