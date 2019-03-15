@@ -5,6 +5,7 @@ class Job < ApplicationRecord
   enum fed_form: [:Individual_1040, :S_Corp_1120S, :Partnership_1065, :C_Corp_1120, :Non_Profit_990, :Trust_1041, :Estate_706, :Amendment, :other]
   enum status: [:commited, :todo, :in_progress, :need_info, :need_signatures, :ready, :filed, :done, :extended, :accepted, :rejected, :review]
   enum job_type: [:bookkeeping, :consulting, :referral, :teaching]
+  validates_presence_of :status, :fed_form
 
   scope :unpaid, -> { where(paid_in_full: false) }
 
