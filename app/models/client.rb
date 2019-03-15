@@ -4,7 +4,7 @@ class Client < ApplicationRecord
 	has_one :primary_preparer
   enum entity_type: [:INDIVIDUAL, :PARTNERSHIP, :S_CORP, :C_CORP, :NON_PROFIT, :TRUST, :ESTATE]
   enum filing_status: [:SINGLE, :MFJ, :MFS, :HOH, :WIDOW]
-  validates_presence_of :last_name, :email
+  validates_presence_of :last_name, :email, :primary_preparer_id, :entity_type
 	validates :tax_id, length: { is: 4, :allow_nil => true}
   validates_uniqueness_of :last_name, :scope => :first_name
 
