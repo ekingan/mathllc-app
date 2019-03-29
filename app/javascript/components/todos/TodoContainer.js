@@ -34,8 +34,7 @@ class TodoContainer extends React.Component {
   updateTodo = (e, id) => {
     axios.put(`/admin/todos/${id}`, {todo: {done: e.target.checked}})
       .then(response => {
-        const todos = this.state.todos.splice()
-        debugger
+        const todos = this.state.todos
         const todoIndex = todos.findIndex(x => x.id === response.data.id)
         todos[todoIndex] = response.data
         this.setState({
@@ -43,6 +42,19 @@ class TodoContainer extends React.Component {
         })
       })
       .catch(error => console.log(error))   
+  }
+
+  deleteTodo = (id) => {
+    axios.delete(`/admin/todos/${id}`)
+    .then(() => {
+      const todos = this.state.todos
+      const i = todos.findIndex(x => x.id === id)
+      const updatedTodos = todos.slice(0, i).concat(todos.slice(i + 1, todos.length))
+      this.setState({
+        todos: updatedTodos
+      })
+    })
+    .catch(error => console.log(error))
   }
 
   render () {
@@ -64,7 +76,10 @@ class TodoContainer extends React.Component {
                     checked={todo.done}
                     onChange={ e => this.updateTodo(e, todo.id)} />              
                   <label className="taskLabel">{todo.title}</label>
-                  <span className="deleteTaskBtn">x</span>
+                  <span className="deleteTaskBtn" 
+                    onClick={() => this.deleteTodo(todo.id)}>
+                    x
+                  </span>
                 </li>
 		          )       
 		         })} 	    
