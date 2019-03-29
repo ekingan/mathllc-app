@@ -7,7 +7,8 @@ class TodoContainer extends React.Component {
     super(props)
     this.state = {
       todos: [],
-      inputValue: ''
+      inputValue: '',
+      column: ''
     }
   }
 
@@ -16,7 +17,28 @@ class TodoContainer extends React.Component {
   }
 
   onDragEnd = result => {
+    const { destination, source, draggableId } = result
+    if (!destination) return
 
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) { return }
+    
+    const todos = Array.from(this.state.todos)
+    const todo = todos[source.index]
+    todos.splice(source.index, 1)
+    todos.splice(destination.index, 0, todo)
+    this.setState({
+      todos: todos
+    })
+    axios.put(`/admin/todos/sort/${todo.id}`)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   createTodo = (e) => {
@@ -60,13 +82,6 @@ class TodoContainer extends React.Component {
       })
     })
     .catch(error => console.log(error))
-  }
-
-  sort = (id) => {
-    axios.post(`/admin/todos/sort`)
-      .then(() => {
-        
-      })
   }
 
   render () {
