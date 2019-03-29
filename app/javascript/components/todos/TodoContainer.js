@@ -1,5 +1,6 @@
 import React from "react"
 import axios from 'axios'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 class TodoContainer extends React.Component {
   constructor(props) {
@@ -12,6 +13,10 @@ class TodoContainer extends React.Component {
 
   componentDidMount() {
     this.setState({todos: this.props.todos})
+  }
+
+  onDragEnd = result => {
+
   }
 
   createTodo = (e) => {
@@ -57,6 +62,13 @@ class TodoContainer extends React.Component {
     .catch(error => console.log(error))
   }
 
+  sort = (id) => {
+    axios.post(`/admin/todos/sort`)
+      .then(() => {
+        
+      })
+  }
+
   render () {
     return (
       <div>
@@ -68,22 +80,44 @@ class TodoContainer extends React.Component {
             onChange={this.handleChange} />
         </div>  	    
         <div className="listWrapper">
-          <ul className="taskList">
-            {this.state.todos.map((todo) => {
-		          return(
-                <li className="task" todo={todo} key={todo.id}>
-                  <input className="taskCheckbox" type="checkbox" 
-                    checked={todo.done}
-                    onChange={ e => this.updateTodo(e, todo.id)} />              
-                  <label className="taskLabel">{todo.title}</label>
-                  <span className="deleteTaskBtn" 
-                    onClick={() => this.deleteTodo(todo.id)}>
-                    x
-                  </span>
-                </li>
-		          )       
-		         })} 	    
-          </ul>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId={this.props.user_id}>
+              {(provided) => (
+                <ul 
+                  className="taskList"
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  {this.state.todos.map((todo,index) => {
+                    return(
+                      <Draggable draggableId={todo.id} index={index}>
+                        {(provided) => (
+                          <li 
+                            className="task" 
+                            todo={todo} 
+                            key={todo.id}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                          >
+                            <input className="taskCheckbox" type="checkbox" 
+                              checked={todo.done}
+                              onChange={ e => this.updateTodo(e, todo.id)} />              
+                            <label className="taskLabel">{todo.title}</label>
+                            <span className="deleteTaskBtn" 
+                              onClick={() => this.deleteTodo(todo.id)}>
+                              x
+                            </span>
+                          </li>
+                        )}
+                      </Draggable>
+                    )       
+                  })}
+                  {provided.placeholder}	    
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>    
     )

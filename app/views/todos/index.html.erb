@@ -2,6 +2,7 @@
 <%= javascript_pack_tag 'application' %>
 <%= react_component(
     "todos/TodoContainer", { 
-        todos: @todos.as_json
+        todos: @todos.as_json,
+        user_id: @user_id
     }
 ) %>

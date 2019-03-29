@@ -4,6 +4,7 @@ class TodosController < ApplicationController
 
   def index
     @todos = Todo.where(user_id: current_user.id)
+    @user_id = current_user.id.to_s
   end
 
   def create
@@ -27,11 +28,15 @@ class TodosController < ApplicationController
     todo.destroy
     head :no_content, status: :ok
   end
+
+  def sort
+    byebug
+  end
   
   private
 
   def todo_params
-    params.require(:todo).permit(:title, :done, :user_id)
+    params.require(:todo).permit(:title, :done, :user_id, :position)
   end
 
 end
