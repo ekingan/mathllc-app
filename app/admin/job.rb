@@ -24,6 +24,8 @@ ActiveAdmin.register Job do
   filter :status, as: :select, collection: Job.statuses
   filter :fed_form, as: :select, collection: Job.fed_forms
   filter :job_type, as: :select, collection: Job.job_types
+  filter :created_at
+  filter :final_efile_check, as: :select, collection: [['Yes', true], ['No', false]]
   filter :ack_fed
   filter :ack_primary_state
   filter :due_date
