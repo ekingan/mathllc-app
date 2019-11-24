@@ -5,10 +5,18 @@ class Payment < ApplicationRecord
   validate :payment_amount
   after_validation :update_paid_in_full
 
+  after_destroy :set_fully_paid_false
+
   scope :created_in, ->(year) { where('extract(year from created_at) = ?', year ) }
 
+  attr_accessor :job
+
+  def job
+    @job ||= Job.find_by_id(self.job_id)
+  end
+
   def sum_of_payments
-    payments = job.payments.sum(&:amount)
+    job.payments.sum(&:amount)
   end
 
   def total_due
@@ -23,9 +31,15 @@ class Payment < ApplicationRecord
     end
   end
 
-  def update_paid_in_full
-    job = Job.find_by_id(self.job_id)
-    job.update_attributes(paid_in_full: true) if sum_of_payments + amount == total_due
+  def fully_paid?
+    sum_of_payments + amount == total_due
   end
 
+  def update_paid_in_full
+    job.update_attributes(paid_in_full: fully_paid?) 
+  end
+
+  def set_fully_paid_false
+    job.update_attributes(paid_in_full: false) 
+  end
 end

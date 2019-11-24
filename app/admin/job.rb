@@ -22,7 +22,7 @@ ActiveAdmin.register Job do
   filter :preparer
   filter :client, collection: proc { Client.order(:last_name) }
   filter :status, as: :select, collection: Job.statuses
-  filter :fed_form, as: :select, collection: Job.fed_forms
+  filter :fed_form, as: :select, input_html: { multiple: true }, collection: Job.fed_forms
   filter :job_type, as: :select, collection: Job.job_types
   filter :created_at
   filter :final_efile_check, as: :select, collection: [['Yes', true], ['No', false]]

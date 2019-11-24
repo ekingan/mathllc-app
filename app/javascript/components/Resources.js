@@ -81,6 +81,15 @@ class Resources extends React.Component {
           <SimpleLink text={"Register a business in Oregon"} link={"https://secure.sos.state.or.us/cbrmanager/index.action#stay"} />
           <SimpleLink text={"Get an EIN (Employer Identification Number)"} link={"https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online"} />
           
+          <TextBox text={"ATTORNEYS"} />
+          <SimpleLink text={"Flanagan Legal Services"} link={"https://www.flanaganlegal.us/"} />
+          <SimpleLink text={"Rational Unicorn Legal Services"} link={"https://rationalunicornlegalservices.com/"} />
+
+          <TextBox text={"FINANCIAL ADVISORS AND COACHES"} />
+          <SimpleLink text={"Michael Menzies - Pembroke Asset Advisors"} link={"https://pembrokeassetadvisors.com/"} />
+          <SimpleLink text={"Emily Gowen - PDX Money Coaching"} link={"http://www.pdxmoneycoaching.com/"} />
+          <SimpleLink text={"Victor Schramm - Chaim Investment Advisors"} link={"https://chaim-investment-advisors.com/"} />
+          
           <TextBox text={"LOW-COST & FREE OREGON BUSINESS ASSISTANCE"} />
           <SimpleLink text={"Oregon IDA Grants"} link={"https://oregonidainitiative.org/"} />
           <SimpleLink text={"Inclusive Business Resource Network"} link={"https://prosperportland.us/portfolio-items/inclusive-business-resource-network/"} />
@@ -94,7 +103,7 @@ class Resources extends React.Component {
           <SimpleLink text={"Financial Beginnings (For youth)"} link={"https://www.financialbeginnings.org/"} />
 
           <TextBox text={"SELF EMPLOYED TAXES"} />
-          <SimpleLink text={"June Walker - Tax advisor to the self employed. Check out her website for tips and tricks"} link={"https://www.innovativechanges.org/"} />
+          <SimpleLink text={"June Walker - Tax advisor to the self employed. Check out her website for tips and tricks"} link={"http://junewalkeronline.com/"} />
 
           <TextBox text={"PERSONAL FINANCE"} />
           <SimpleLink text={"Hadassah Damien - Real talk on personal finance, relating to money, and progressive economics"} link={"http://www.ridefreefearlessmoney.com/"} />
