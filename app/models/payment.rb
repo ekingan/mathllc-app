@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   belongs_to :job, touch: true
   enum payment_type: [:check, :cash, :square, :paypal, :qbo, :stripe, :trade, :other]
-  validates_presence_of :amount, numericality: true
+  validate :amount_valid
   validate :payment_amount
   after_validation :update_paid_in_full
 
@@ -23,11 +23,15 @@ class Payment < ApplicationRecord
     job.bill
   end
 
+  def amount_valid
+    errors.add(:amount, 'must be more than 1') if amount.nil? || amount < 1
+  end
+
   def payment_amount
     if partial_payment
-      errors.add(:payment, "This payment must not exceed $#{job.bill - sum_of_payments}") unless (sum_of_payments + amount <= total_due)
+      errors.add(:payment, "must not exceed $#{job.bill - sum_of_payments}") unless (sum_of_payments + amount <= total_due)
     else
-      errors.add(:payment, "This payment must equal $#{total_due-sum_of_payments}. If this is a partial payment, please check the partial payment box") unless (amount == total_due)
+      errors.add(:payment, "must equal $#{total_due-sum_of_payments}. If this is a partial payment, please check the partial payment box") unless (amount == total_due)
     end
   end
 
@@ -36,7 +40,7 @@ class Payment < ApplicationRecord
   end
 
   def update_paid_in_full
-    job.update_attributes(paid_in_full: fully_paid?) 
+    job.update_attributes(paid_in_full: fully_paid?) if amount.present?
   end
 
   def set_fully_paid_false
