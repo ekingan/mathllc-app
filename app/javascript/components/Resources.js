@@ -23,15 +23,15 @@ class Resources extends React.Component {
               plus={false}
             />
             <div className="details">
-              2. At the end of the year, you can file the 1099 yourself with the&nbsp; 
+              2. At the end of the year, you can file the 1099 yourself with the&nbsp;
               <a href="https://iop.intuit.com/welcome/1099.jsp?SC=ppc_google_1099&cid=ppc_Google_1099_e-file-1099%27s_Exact&X1ID=~uk~&gclid=CjwKCAiA15vTBRAHEiwA7Snfc4Tk7meB_eQTcGk20uZj31OmlBOmU1ATWrRocMykt9nerVnqAdkjiBoCl0UQAvD_BwE&s_kwcid=AL!2419!3!242528822113!e!!g!!e%20file%201099%27s&ef_id=WlKuKQAAAZGZBjUV:20180124053139:s" target="_blank">
               IRS
-              </a> 
-              &nbsp;and&nbsp; 
+              </a>
+              &nbsp;and&nbsp;
               <a href="https://revenueonline.dor.oregon.gov/tap/_/#1" target="_blank">
               OR
               </a>&nbsp;.
-            </div> 
+            </div>
 
             <div className="title" style={{paddingTop: '20px', paddingBottom: '20px'}}>
               <a href="https://www.sba.gov/business-guide/manage-your-business/hire-manage-employees" target="_blank" >Independent Contractor vs. Employee</a> - A link to how to decipher between the two and the implications of each
@@ -51,20 +51,20 @@ class Resources extends React.Component {
 
             <SimpleLink link={"https://www.macrumors.com/how-to/digitally-sign-a-pdf-using-preview-on-mac/"} text={"How to sign your tax return on your computer"} />
 
-            <div className="title" style={{paddingTop: '20px'}}> 
+            <div className="title" style={{paddingTop: '20px'}}>
               <span>What if you get a letter from the IRS or other tax bureau?</span>
               <br></br>
               <span className="details" style={{paddingLeft: '20px'}}>
-              Don't panic! Most of these issues can be resolved quickly and painlessly. The first step is to provide your preparer with a copy of the letter you received. We can best help you after reading their letter. 
+              Don't panic! Most of these issues can be resolved quickly and painlessly. The first step is to provide your preparer with a copy of the letter you received. We can best help you after reading their letter.
               </span>
             </div>
 
-            <div className="title" style={{paddingTop: '20px'}}> 
+            <div className="title" style={{paddingTop: '20px'}}>
               <span>What if you get a phone call or email from the IRS or other tax bureau?</span>
               <br></br>
               <span className="details" style={{paddingLeft: '20px'}}>
-                No tax bureau ever will ever make initial contact you via email or phone. In almost all cases these emails and phone calls are fishing schemes!  
-                Sometimes a tax bureau will follow up with you via email or phone with specifics of your case, but only after you have made initial contact with them.    
+                No tax bureau ever will ever make initial contact you via email or phone. In almost all cases these emails and phone calls are fishing schemes!
+                Sometimes a tax bureau will follow up with you via email or phone with specifics of your case, but only after you have made initial contact with them.
               </span>
             </div>
 
@@ -72,7 +72,7 @@ class Resources extends React.Component {
 
             <SimpleLink link={"https://s3-us-west-2.amazonaws.com/mathllc/Accountable_Plan_Agreement.pdf"} text={"Download an accountable plan"} />
             <SimpleLink link={"https://s3-us-west-2.amazonaws.com/mathllc/ExpenseReport.xls"} text={"Download an expense report"} />
-            <SimpleLink link={"https://s3-us-west-2.amazonaws.com/mathllc/MCNW_Bookkeeping_Template.xlsx"} text={"Download a spreadsheet to track your income and expenses"} />
+            <SimpleLink link={"https://mathllc.s3-us-west-2.amazonaws.com/MCNW_Bookkeeping_Template.xlsx"} text={"Download a spreadsheet to track your income and expenses"} />
 
           <TextBox text={"STARTING A BUSINESS IN OREGON"} />
           <SimpleLink text={"Oregon Business Toolkit"} link={"https://www.oregon.gov/business/Pages/toolkit.aspx"} />
@@ -80,7 +80,7 @@ class Resources extends React.Component {
           <SimpleLink text={"Business Name Search"} link={"http://egov.sos.state.or.us/br/pkg_web_name_srch_inq.login"} />
           <SimpleLink text={"Register a business in Oregon"} link={"https://secure.sos.state.or.us/cbrmanager/index.action#stay"} />
           <SimpleLink text={"Get an EIN (Employer Identification Number)"} link={"https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online"} />
-          
+
           <TextBox text={"ATTORNEYS"} />
           <SimpleLink text={"Flanagan Legal Services"} link={"https://www.flanaganlegal.us/"} />
           <SimpleLink text={"Rational Unicorn Legal Services"} link={"https://rationalunicornlegalservices.com/"} />
@@ -89,14 +89,14 @@ class Resources extends React.Component {
           <SimpleLink text={"Michael Menzies - Pembroke Asset Advisors"} link={"https://pembrokeassetadvisors.com/"} />
           <SimpleLink text={"Emily Gowen - PDX Money Coaching"} link={"http://www.pdxmoneycoaching.com/"} />
           <SimpleLink text={"Victor Schramm - Chaim Investment Advisors"} link={"https://chaim-investment-advisors.com/"} />
-          
+
           <TextBox text={"LOW-COST & FREE OREGON BUSINESS ASSISTANCE"} />
           <SimpleLink text={"Oregon IDA Grants"} link={"https://oregonidainitiative.org/"} />
           <SimpleLink text={"Inclusive Business Resource Network"} link={"https://prosperportland.us/portfolio-items/inclusive-business-resource-network/"} />
-          
+
           <TextBox text={"LOW INCOME TAX LEGAL SUPPORT"} />
           <SimpleLink text={"El Programa Hispano Catolico"} link={"http://elprograma.org/program-services/tax-services/low-income-taxpayer-clinic-litc/"} />
-          
+
           <TextBox text={"NON PROFIT PERSONAL FINANCIAL SERVICES"} />
           <SimpleLink text={"Innovative Changes"} link={"https://www.innovativechanges.org/"} />
           <SimpleLink text={"Metropolitan Family Services"} link={"https://www.metfamily.org/"} />
