@@ -1,7 +1,7 @@
 ActiveAdmin.register Wage do
 	permit_params :preparer_attributes, :amount, :pay_date, :preparer_id
 	menu priority: 5
-	filter :preparer, as: :select, collection: Preparer.all.map(&:first_name)
+	filter :preparer, as: :select, collection: ->{ Preparer.all.map(&:first_name) }
 	filter :amount
 	filter :created_at
 
