@@ -163,7 +163,8 @@ GEM
     polyamorous (2.3.0)
       activerecord (>= 5.0)
     public_suffix (4.0.2)
-    puma (3.12.2)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.8)
@@ -282,7 +283,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
-  puma (~> 3.7)
+  puma (~> 4.3)
   pundit
   rails (~> 5.2.2)
   rb-readline
