@@ -19,7 +19,7 @@ ActiveAdmin.register Job do
     Job.all
   end
 
-  filter :preparer
+  filter :preparer, collection: proc { Preparer.active }
   filter :client, collection: proc { Client.order(:last_name) }
   filter :status, as: :select, collection: Job.statuses
   filter :fed_form, as: :select, collection: Job.fed_forms

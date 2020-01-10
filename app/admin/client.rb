@@ -6,11 +6,11 @@ ActiveAdmin.register Client do
   menu priority: 2
   config.sort_order = :last_name_asc
 
-  scope :active, default: true 
+  scope :active, default: true
   scope :all
   scope :inactive
 
-  filter :primary_preparer_id, as: :select, collection: Preparer.all
+  filter :primary_preparer_id, as: :select, collection: proc { Preparer.active }
   filter :entity_type, as: :select, collection: [["Individual", 0], ["Partnership", 1], ["S-Corp", 2], ["C-Corp", 3], ["Non-Profit", 4], ["Trust", 5], ["Estate", 6]]
   filter :company
   filter :first_name

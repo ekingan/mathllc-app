@@ -3,7 +3,7 @@ ActiveAdmin.register Preparer do
                 :state, :zip_code, :date_of_birth, :role, :license_number, :job_title, :bio, :image_url
   menu priority: 1
 
-  filter :last_name
+  scope :active, default: true
 
   index do
     column :id
