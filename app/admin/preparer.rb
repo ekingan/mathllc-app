@@ -5,6 +5,8 @@ ActiveAdmin.register Preparer do
 
   scope :active, default: true
 
+  config.filters = false
+
   index do
     column :id
     column :first_name

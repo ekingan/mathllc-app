@@ -9,7 +9,7 @@ ActiveAdmin.register Payment do
 
   actions :all, :except => [:edit]
 
-	filter :preparer
+	filter :preparer, collection: proc { Preparer.active }
 	filter :job_id, as: :select
 	filter :amount
 	filter :created_at
