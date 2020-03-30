@@ -11,6 +11,7 @@ class Nav extends React.Component {
         <li> <a href="/returning-clients"> Returning Clients </a>  </li>
         <li> <a href="/dates"> Important Dates</a>  </li>
         <li> <a href="/resources"> Other Resources </a>  </li>
+        <li> <a href="/covid-19"> COVID-19 Information </a>  </li>
         <li className="page-divider"></li>
       </ul>
     );
