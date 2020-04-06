@@ -24,4 +24,6 @@ class HomeController < ApplicationController
   def resources
   end
 
+  def covid_19
+  end
 end
