@@ -5,7 +5,6 @@ import Nav from "./Nav"
 import Note from "./Note"
 import Section from "./Section"
 import Step from "./Step"
-import Footer from "./Footer"
 
 class ReturningClients extends React.Component {
   render () {
@@ -48,7 +47,6 @@ class ReturningClients extends React.Component {
             instructions={"You can schedule an appointment with us here before we prepare your taxes or when your taxes ready to review and sign. Appointments are generally a good idea if you have never worked with us before or if you have important changes that you want to discuss with us. If you have nothing new to discuss, you can simply mail, or drop your tax documents off to us, or upload them to our secure web portal. It is usually best for us to meet in person to review and sign your tax return. However, if meeting in person is not possible, we can send you your tax return to sign and review. Between April 15th and September 1st, our online schedule is very limited. If you are unable to find a time to connect with us on the schedule, please email mathllctax@gmail.com and we will do our best to find an agreeable meeting time and location."}
           />
           <div style={{ paddingTop: '40px'}}></div>
-          <Footer />
         </div>
       </div>
     );

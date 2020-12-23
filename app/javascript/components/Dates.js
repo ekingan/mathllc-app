@@ -5,7 +5,6 @@ import Nav from "./Nav"
 import TextBox from "./TextBox"
 import Item from "./Item"
 import SubItem from "./SubItem"
-import Footer from "./Footer"
 
 class Dates extends React.Component {
   render () {
@@ -52,7 +51,6 @@ class Dates extends React.Component {
 
           <div style={{paddingTop: '50px'}}></div>
         </div>
-        <Footer />
       </div>
     );
   }

@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import Header from "./Header"
 import Nav from "./Nav"
-import Footer from "./Footer"
 import Section from "./Section"
 import Item from "./Item"
 import SubItem from "./SubItem"
@@ -43,7 +42,6 @@ class Services extends React.Component {
             "* Prices include consultation, preparation and electronic filing of federal return and one state return." + 
             "Prices are subjuect to change. Additional cost may apply for other tax forms required such as schedule A, " + 
             "home office, certain tax credits deductions, other sources of income, and depreciating property."} />
-          <Footer />
         </div>
       </div>
     );
