@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import Header from "./Header"
 import Nav from "./Nav"
-import Footer from "./Footer"
 import GeneralAbout from "./GeneralAbout"
 import Profile from "./Profile"
 
@@ -19,7 +18,6 @@ class About extends React.Component {
         <GeneralAbout />
         {preparerProfiles}
         <div style={{paddingTop: '50px'}}></div>
-        <Footer />
       </div>
     );
   }

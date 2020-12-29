@@ -4,7 +4,6 @@ import Header from "./Header"
 import Nav from "./Nav"
 import TextBox from "./TextBox"
 import SimpleLink from "./SimpleLink"
-import Footer from "./Footer"
 
 class Covid19 extends React.Component {
   render () {
@@ -30,7 +29,6 @@ class Covid19 extends React.Component {
           <div style={{paddingTop: '50px'}}></div>
           </div>
           </div>
-        <Footer />
       </div>
     );
   }

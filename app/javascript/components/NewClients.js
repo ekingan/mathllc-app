@@ -4,7 +4,6 @@ import Header from "./Header"
 import Nav from "./Nav"
 import TextBox from "./TextBox"
 import Link from "./Link"
-import Footer from "./Footer"
 
 class NewClients extends React.Component {
   render () {
@@ -19,7 +18,6 @@ class NewClients extends React.Component {
         <Link text={"Artemis Tax"} link={"http://www.artemistax.com"}/>
         <Link text={"Marisa Barto"} link={"http://thetaxstrategistnw.com/"}/>
         <div style={{paddingTop: '50px'}}></div>
-        <Footer />
       </div>
     );
   }
