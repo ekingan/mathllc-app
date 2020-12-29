@@ -21,7 +21,7 @@ class ReturningClients extends React.Component {
           <Step
             plus={true}
             text={"FILL OUT THE TAX ORGANIZER:"}
-            link={"https://mathllc.s3-us-west-2.amazonaws.com/MATH_LLC_TAX_ORGANIZER_2019.pdf"}
+            link={"https://mathllc.s3-us-west-2.amazonaws.com/MATH_LLC_TAX_ORGANIZER_2020.pdf"}
             instructions={"All clients will have to complete this organizer, including the engagement letter,  in order for us to begin working on your taxes! If we are preparing a return for your small business and you use Quickbooks or other accounting software, please provide us with a back-up version of your Quickbooks, access to it online, or financial statements."
             }/>
           <Note text={"* note - You must use a software program like Adobe or Preview to complete the organizer rather than completing it within your web browser, otherwise you will not be able to save your work. You can also print it out and complete it by hand."}/>
@@ -42,9 +42,9 @@ class ReturningClients extends React.Component {
           <div className="step-header" style={{ paddingTop: '40px'}}>Step #3</div>
           <Step
             plus={true}
-            text={"SCHEDULE A MEETING WITH US:"}
-            link={"https://www.snapappointments.com/mathllc"}
-            instructions={"You can schedule an appointment with us here before we prepare your taxes or when your taxes ready to review and sign. Appointments are generally a good idea if you have never worked with us before or if you have important changes that you want to discuss with us. If you have nothing new to discuss, you can simply mail, or drop your tax documents off to us, or upload them to our secure web portal. It is usually best for us to meet in person to review and sign your tax return. However, if meeting in person is not possible, we can send you your tax return to sign and review. Between April 15th and September 1st, our online schedule is very limited. If you are unable to find a time to connect with us on the schedule, please email mathllctax@gmail.com and we will do our best to find an agreeable meeting time and location."}
+            text={"SIGN YOUR TAX RETURN:"}
+            link={""}
+            instructions={"Under the assumption that meeting in person this year is not possible, we will upload your tax return to the web portal for you to sign and review."}
           />
           <div style={{ paddingTop: '40px'}}></div>
         </div>

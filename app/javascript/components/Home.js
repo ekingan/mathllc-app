@@ -9,6 +9,7 @@ class Home extends React.Component {
     return (
       <div className="home-container">
       <Header logo={this.props.logo}/>
+        <Nav />
         <div className="intro">
           <div className="text">
             Like many businesses in 2020, Math LLC has experienced some big changes.
@@ -17,6 +18,7 @@ class Home extends React.Component {
             <br></br>
             As the founding member of Math LLC, Em Kingan will continue working with her existing clients moving forward.
             You are considered an exisiting client if you filed your taxes with Kingan in 2020.
+            Visit the <a href="/returning-clients">returning clients</a> section for more information about working together this year.
           </div>
           <div className="text">
             Jenna and Amanda have formed an amazing new company called <a href='https://www.shiftaccountingllc.com/' target="blank">Shift Accounting</a>.
