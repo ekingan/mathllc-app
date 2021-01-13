@@ -20,10 +20,12 @@ class Home extends React.Component {
             You are considered an exisiting client if you filed your taxes with Kingan in 2020.
             Visit the <a href="/returning-clients">returning clients</a> section for more information about working together this year.
           </div>
+          <br></br>
           <div className="text">
             Jenna and Amanda have formed an amazing new company called <a href='https://www.shiftaccountingllc.com/' target="blank">Shift Accounting</a>.
             They are awesome, you should check them out!
           </div>
+          <br></br>
           <div className="text">
             Brian Frank will continue to work with his clients under <a href="http://www.brianfrankpdx.com/" target="blank">Brian Frank Consulting</a>.
           </div>
