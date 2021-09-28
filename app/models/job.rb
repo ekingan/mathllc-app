@@ -22,7 +22,7 @@ class Job < ApplicationRecord
   scope :billed, -> { where('bill!=?', 0.0) }
 
   def to_param
-    "#{id} #{client.last_name}".parameterize
+    "#{id} #{client.last_name} #{year}".parameterize
   end
 
   def file!
