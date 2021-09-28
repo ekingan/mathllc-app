@@ -22,7 +22,7 @@ ActiveAdmin.register Job do
   filter :preparer, collection: proc { Preparer.active }
   filter :client, collection: proc { Client.order(:last_name) }
   filter :status, as: :select, collection: Job.statuses
-  filter :year, as: :select, collection: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+  filter :year, as: :select
   filter :fed_form, as: :select, collection: Job.fed_forms
   filter :job_type, as: :select, collection: Job.job_types
   filter :created_at
