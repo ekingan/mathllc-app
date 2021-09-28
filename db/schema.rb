@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_035808) do
+ActiveRecord::Schema.define(version: 2021_09_13_185114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2018_12_31_035808) do
     t.float "bill", default: 0.0
     t.boolean "final_efile_check", default: false
     t.boolean "paid_in_full", default: false, null: false
+    t.integer "year"
     t.index ["client_id"], name: "index_jobs_on_client_id"
     t.index ["preparer_id"], name: "index_jobs_on_preparer_id"
   end
@@ -123,6 +124,16 @@ ActiveRecord::Schema.define(version: 2018_12_31_035808) do
     t.index ["user_id"], name: "index_preparers_on_user_id"
   end
 
+  create_table "todos", force: :cascade do |t|
+    t.string "title"
+    t.boolean "done", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position", default: 1
+    t.index ["user_id"], name: "index_todos_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,6 +168,7 @@ ActiveRecord::Schema.define(version: 2018_12_31_035808) do
   add_foreign_key "jobs", "preparers"
   add_foreign_key "payments", "jobs"
   add_foreign_key "preparers", "users"
+  add_foreign_key "todos", "users"
   add_foreign_key "users", "preparers"
   add_foreign_key "wages", "preparers"
 end

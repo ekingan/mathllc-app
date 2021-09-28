@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.0'
+ruby '3.0.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -7,15 +7,15 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.2.2'
-gem 'pg', '~> 0.18'
+gem 'rails', '~> 6.1.4.1'
+gem 'pg', '~> 1.1'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jbuilder', '~> 2.5'
 
-gem 'activeadmin', '1.4.3'
+gem 'activeadmin'
 gem 'webpacker'
 gem 'react-rails'
 
@@ -24,6 +24,7 @@ gem 'cancan' # or cancancan
 gem 'draper'
 gem 'pundit'
 gem 'active_skin'
+gem 'coffee-rails', '~> 5.0.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -33,7 +34,7 @@ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rb-readline'

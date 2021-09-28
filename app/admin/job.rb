@@ -1,7 +1,7 @@
 ActiveAdmin.register Job do
   permit_params :fed_form, :primary_state, :second_state, :third_state, :tmse, :portland, :status,
               :printed, :scanned, :uploaded, :final_efile_check, :filed, :ack_fed, :ack_primary_state,
-              :ack_second_state, :ack_third_state, :due_date, :rejected, :job_type,
+              :ack_second_state, :ack_third_state, :due_date, :rejected, :job_type, :year,
               :notes, :bill, :preparer, :client, :client_id, :preparer_id, :payment_id, preparer_attributes: [:first_name, :id],
               client_attributes: [:last_name, :id], payment_attributes: [:amount, :check_number, :payment_type]
 
@@ -22,6 +22,7 @@ ActiveAdmin.register Job do
   filter :preparer, collection: proc { Preparer.active }
   filter :client, collection: proc { Client.order(:last_name) }
   filter :status, as: :select, collection: Job.statuses
+  filter :year, as: :select, collection: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
   filter :fed_form, as: :select, collection: Job.fed_forms
   filter :job_type, as: :select, collection: Job.job_types
   filter :created_at
@@ -139,6 +140,7 @@ ActiveAdmin.register Job do
   index do
     selectable_column
     column :id
+    column :year
     column :client
     column :preparer
     column "Job Type" do |job|
@@ -190,6 +192,7 @@ ActiveAdmin.register Job do
             row "Client" do
               "#{job.client.name}"
             end
+            row :year
             row "Bill Amount" do
               number_to_currency(job.bill)
             end
@@ -241,7 +244,6 @@ ActiveAdmin.register Job do
     end
   end
 
-
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs "Preparer" do
@@ -262,6 +264,7 @@ ActiveAdmin.register Job do
     tabs do
       tab "Tax Return Info" do
         f.inputs "Job Info" do
+          f.input :year
           f.input :fed_form
           f.input :primary_state
           f.input :tmse
