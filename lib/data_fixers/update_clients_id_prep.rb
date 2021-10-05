@@ -26,7 +26,7 @@ module DataFixers
 		def update_client(row)
 			data = row.to_hash
 			if c = Client.find_by_company(data['Taxpayer Name'].upcase)
-				c.update_attributes(
+				c.update(
 					tax_id: tax_id(data),
 					primary_preparer_id: data["Preparer Number"],
 					first_name: format_name(data['Taxpayer First Name']),
