@@ -40,10 +40,10 @@ class Payment < ApplicationRecord
   end
 
   def update_paid_in_full
-    job.update_attributes(paid_in_full: fully_paid?) if amount.present?
+    job.update(paid_in_full: fully_paid?) if amount.present?
   end
 
   def set_fully_paid_false
-    job.update_attributes(paid_in_full: false) 
+    job.update(paid_in_full: false) 
   end
 end
