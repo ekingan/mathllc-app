@@ -188,7 +188,8 @@ GEM
     orm_adapter (0.5.0)
     pg (1.4.5)
     public_suffix (5.0.1)
-    puma (3.12.6)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
     racc (1.6.1)
@@ -317,7 +318,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen
   pg (~> 1.1)
-  puma (~> 3.7)
+  puma (~> 4.3)
   pundit
   rails (~> 6.1.4.1)
   rb-readline
