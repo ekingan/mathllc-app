@@ -27,26 +27,6 @@ ActiveAdmin.register_page "Dashboard" do
     end
     columns do
       column do
-        panel "Jobs in progress" do
-          ol do
-            jobs.where(status: :in_progress).reverse.map do |job|
-              li link_to("#{job.client.name} - Updated on #{job.updated_at.to_date.strftime("%m/%d/%Y")}", admin_job_path(job))
-            end
-          end
-        end
-      end
-      column do
-        panel "Jobs for review" do
-          ol do
-            jobs.where(status: :review).reverse.map do |job|
-              li link_to("#{job.client.name} - #{job.status}", admin_job_path(job))
-            end
-          end
-        end
-      end
-    end
-    columns do
-      column do
         panel "Jobs that need to be scanned" do
           ol do
             jobs.not_scanned.map do |job|
@@ -87,53 +67,10 @@ ActiveAdmin.register_page "Dashboard" do
     end
     columns do
       column do
-        panel "Filed Jobs" do
-          ol do
-            jobs.filed.limit(25).map do |job|
-              li link_to("#{job.client.name} - Filed on #{job.filed.strftime("%m/%d/%Y") if job.filed}", admin_job_path(job))
-            end
-          end
-        end
-      end
-      column do
-        panel "Accepted Jobs" do
-          ol do
-            jobs.where(status: :accepted).reverse.map do |job|
-              li link_to("#{job.client.name} - Accepted on #{job.ack_fed.strftime("%m/%d/%Y") if job.ack_fed}", admin_job_path(job))
-            end
-          end
-        end
-      end
-    end
-    columns do
-      column do
         panel "Rejected Returns" do
           ol do
             jobs.rejected.map do |job|
               li link_to("#{job.client.name} - Rejected", admin_job_path(job))
-            end
-          end
-        end
-      end
-      column do
-        panel "Extended returns that have been accepted" do
-          ol do
-            jobs.extended.where('ack_fed is NOT NULL').map do |job|
-              li link_to("#{job.client.name} - Accepted", admin_job_path(job))
-            end
-          end
-        end
-      end
-    end
-    columns do
-      column do
-        panel "Recent Payments" do
-          ol do
-            #refactor this
-            jobs.paid.limit(30).each do |job|
-              Payment.where(job_id: job.id).map do |pay|
-                li link_to("#{number_to_currency(pay.amount)} - #{pay.job.client.name} - Received on  #{pay.created_at.to_date.strftime("%m/%d/%Y")} ", admin_payment_path(pay))
-              end
             end
           end
         end
